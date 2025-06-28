@@ -1,17 +1,17 @@
-# prosperoOS v0.1
+# PS5-Touch v0.1
 
-![prosperoOS Pegasus theme](https://i.imgur.com/4cPZLoo.png)
-![prosperoOS Pegasus theme](https://i.imgur.com/AlDRo9l.png)
-![prosperoOS Pegasus theme](https://i.imgur.com/PiZGhgi.png)
-![prosperoOS Pegasus theme](https://i.imgur.com/0YDTuzG.png)
+![PS5-Touch Pegasus theme](https://i.imgur.com/4cPZLoo.png)
+![PS5-Touch Pegasus theme](https://i.imgur.com/AlDRo9l.png)
+![PS5-Touch Pegasus theme](https://i.imgur.com/PiZGhgi.png)
+![PS5-Touch Pegasus theme](https://i.imgur.com/0YDTuzG.png)
 
-## prosperoOS theme for Pegasus Frontend
+## PS5-Touch theme for Pegasus Frontend
 
 A [Pegasus Frontend](http://pegasus-frontend.org/) theme based on the Playstation 5 interface. It features a clean navigation with smart playlists to help you discover more from your collection.
 
 ## Installation
 
-[Download the latest version](https://github.com/PlayingKarrde/prosperoOS/releases/latest) and extract it in your [Pegasus theme directory](http://pegasus-frontend.org/docs/user-guide/installing-themes/) under a folder called prosperoOS.
+[Download the latest version](https://github.com/PlayingKarrde/PS5-Touch/releases/latest) and extract it in your [Pegasus theme directory](http://pegasus-frontend.org/docs/user-guide/installing-themes/) under a folder called PS5-Touch.
 
 IMPORTANT: You need to have the latest version of Pegasus installed (not the current Stable release) otherwise you will get an error regarding Qt.Modules.
 
