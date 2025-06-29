@@ -104,9 +104,6 @@ FocusScope {
                 if (currentIndex > 0) {
                     sfxNav.play();
                     decrementCurrentIndex();
-                else
-                    sfxNav.play();
-                    incrementCurrentIndex();
                 }
                 }
             }
