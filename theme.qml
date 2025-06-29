@@ -547,4 +547,10 @@ FocusScope {
         source: "assets/sfx/toggle.wav"
     }
 
+    TapHandler {
+        id: tapHandler
+        gesturePolicy: TapHandler.ReleaseWithinBounds
+        onTapped: onDetailsPressed();
+        onLongPressed: onAcceptPressed();
+    }
 }
