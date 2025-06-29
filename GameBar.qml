@@ -242,20 +242,19 @@ FocusScope {
                 Behavior on opacity { NumberAnimation { duration: 50 } }
             }
 
-            MouseArea {
-                anchors.fill: parent
-                enabled: active
-                acceptedButtons: Qt.NoButton
-                hoverEnabled: false
-                propagateComposedEvents: true
-                onClicked: {
+            TapHandler {
+                acceptedDevices: PointerDevice.TouchScreen
+                gesturePolicy: TapHandler.WithinBounds
+                grabPermissions: PointerHandler.CanTakeOverFromAnything
+                onTapped: {
                     currentIndex = index
                     sfxAccept.play()
                     exitNav()
                 }
-                onDoubleClicked: {
+                onDoubleTapped: {
                     currentIndex = index
                     sfxAccept.play()
+                    // Puedes lanzar una vista de detalles aquí, o marcar como favorito, etc.
                     navigationMenu()
                 }
             }
