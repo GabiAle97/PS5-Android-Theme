@@ -251,10 +251,10 @@ FocusScope {
                     exitNav()
                 }
                 onLongPressed: {
-                    currentIndex = index
+                    currentIndex = gameNav
                     sfxAccept.play()
                     // Puedes lanzar una vista de detalles aquí, o marcar como favorito, etc.
-                    console.log("Long press sobre:", gameData.title)
+                    exitNav()
                 }
             }
         }
