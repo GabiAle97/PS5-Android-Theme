@@ -91,24 +91,22 @@ FocusScope {
 
         width: parent.width
 
-        // Swipe left to go to previous item
         MultiPointTouchArea {
             anchors.fill: parent
             minimumTouchPoints: 1
             maximumTouchPoints: 1
             onReleased: {
-            if (touchPoints.length === 1) {
-                var tp = touchPoints[0];
-                // Detect left swipe (from right to left)
-                if (tp.startX - tp.x > vpx(40) && Math.abs(tp.startY - tp.y) < vpx(30)) {
-                if (currentIndex > 0) {
-                    sfxNav.play();
-                    decrementCurrentIndex();
-                }
+                if (touchPoints.length === 1) {
+                    var tp = touchPoints[0];
+                    // Detect left swipe (from right to left)
+                    if (tp.startX - tp.x > vpx(40) && Math.abs(tp.startY - tp.y) < vpx(30)) {
+                        if (currentIndex > 0) {
+                            sfxNav.play();
+                            decrementCurrentIndex();
+                        }
+                    }
                 }
             }
-            }
-            // Prevent touch from stealing focus
             propagateComposedEvents: true
         }
 
