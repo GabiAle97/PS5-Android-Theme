@@ -4,6 +4,7 @@ import SortFilterProxyModel 0.2
 import QtMultimedia 5.9
 import QtQml.Models 2.10
 import QtGraphicalEffects 1.12
+import QtMultitouch 5.12
 import "Lists"
 import "utils.js" as Utils
 
