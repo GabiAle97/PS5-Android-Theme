@@ -547,10 +547,4 @@ FocusScope {
         source: "assets/sfx/toggle.wav"
     }
 
-    TapHandler {
-        id: tapHandler
-        gesturePolicy: TapHandler.ReleaseWithinBounds
-        onTapped: gamedetails();
-        onLongPressed: launchGame();
-    }
 }

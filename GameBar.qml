@@ -4,7 +4,6 @@ import SortFilterProxyModel 0.2
 import QtMultimedia 5.9
 import QtQml.Models 2.10
 import QtGraphicalEffects 1.12
-import QtMultitouch 5.12
 import "Lists"
 import "utils.js" as Utils
 
@@ -91,25 +90,6 @@ FocusScope {
         }
 
         width: parent.width
-
-        MultiPointTouchArea {
-            anchors.fill: parent
-            minimumTouchPoints: 1
-            maximumTouchPoints: 1
-            onReleased: {
-                if (touchPoints.length === 1) {
-                    var tp = touchPoints[0];
-                    // Detect left swipe (from right to left)
-                    if (tp.startX - tp.x > vpx(40) && Math.abs(tp.startY - tp.y) < vpx(30)) {
-                        if (currentIndex > 0) {
-                            sfxNav.play();
-                            decrementCurrentIndex();
-                        }
-                    }
-                }
-            }
-            propagateComposedEvents: true
-        }
 
         Keys.onLeftPressed: {
             if (currentIndex > 0) {
