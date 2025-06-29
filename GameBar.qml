@@ -250,7 +250,7 @@ FocusScope {
                     sfxAccept.play()
                     exitNav()
                 }
-                onLongPressed: {
+                onDoubleTapped: {
                     currentIndex = index
                     sfxAccept.play()
                     // Puedes lanzar una vista de detalles aquí, o marcar como favorito, etc.
