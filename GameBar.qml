@@ -134,6 +134,22 @@ FocusScope {
         delegate: gameBarDelegate
     }
 
+    TapHandler {
+        acceptedDevices: PointerDevice.TouchScreen
+        gesturePolicy: TapHandler.WithinBounds
+        onTapped: {
+            currentIndex = index
+            sfxAccept.play()
+            exitNav()
+        }
+        onDoubleTapped: {
+            currentIndex = index
+            sfxAccept.play()
+            // Puedes lanzar una vista de detalles aquí, o marcar como favorito, etc.
+            navigationMenu()
+        }
+    }
+
     Keys.onDownPressed: { 
         sfxAccept.play(); 
         exitNav(); 
@@ -241,21 +257,6 @@ FocusScope {
                 opacity: selected ? 1 : 0
                 Behavior on opacity { NumberAnimation { duration: 50 } }
             }
-        }
-    }
-    TapHandler {
-        acceptedDevices: PointerDevice.TouchScreen
-        gesturePolicy: TapHandler.WithinBounds
-        onTapped: {
-            currentIndex = index
-            sfxAccept.play()
-            exitNav()
-        }
-        onDoubleTapped: {
-            currentIndex = index
-            sfxAccept.play()
-            // Puedes lanzar una vista de detalles aquí, o marcar como favorito, etc.
-            navigationMenu()
         }
     }
 }
