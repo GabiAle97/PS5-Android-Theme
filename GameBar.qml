@@ -10,17 +10,14 @@ import "utils.js" as Utils
 FocusScope {
     id: root
 
-
     signal exitNav
     
     property alias currentIndex: gameNav.currentIndex
     property alias list: gameNav
     property bool active
 
-    // Build the games list but with extra menu options at the start and end
     ListModel {
-    id: gamesListModel
-
+        id: gamesListModel
         property var activeCollection:  currentCollection!=-1 ? api.collections.get(currentCollection).games : api.allGames
 
         Component.onCompleted: {
@@ -42,16 +39,9 @@ FocusScope {
                 "icon":         "assets/images/navigation/Explore.png",
                 "background":   ""
             })
-            for(var i=0; i<gamesCounter; i++) {
-                
+            for (var i=0; i<gamesCounter; i++) {
                 append(createListElement(i));
-            }/*
-            append({
-                "name":         "Top Games", 
-                "idx":          -2,
-                "icon":         "assets/images/navigation/Top Rated.png",
-                "background":   ""
-            })//*/
+            }
             append({
                 "name":         "All Games", 
                 "idx":          -3,
@@ -70,26 +60,48 @@ FocusScope {
         }
     }
 
+    // ?? MultiPointTouchArea para swipes táctiles
+    MultiPointTouchArea {
+        anchors.fill: parent
+        minimumTouchPoints: 1
+        maximumTouchPoints: 1
+        enabled: active
+
+        property real startX
+
+        onPressed: {
+            startX = touchPoints[0].x
+        }
+
+        onReleased: {
+            var endX = touchPoints[0].x
+            var dx = endX - startX
+            if (Math.abs(dx) > 40) {
+                if (dx < 0 && gameNav.currentIndex < gameNav.count - 1) {
+                    gameNav.incrementCurrentIndex()
+                    sfxNav.play()
+                } else if (dx > 0 && gameNav.currentIndex > 0) {
+                    gameNav.decrementCurrentIndex()
+                    sfxNav.play()
+                }
+            }
+        }
+    }
+
     ListView {
-    id: gameNav
+        id: gameNav
 
         x: active ? vpx(125) : vpx(40)
         y: active ? vpx(0) : vpx(-50)
 
-        Behavior on x { NumberAnimation { duration: 200; 
-            easing.type: Easing.OutCubic;
-            easing.amplitude: 2.0;
-            easing.period: 1.5 
-            }
-        }
-        Behavior on y { NumberAnimation { duration: 200; 
-            easing.type: Easing.OutCubic;
-            easing.amplitude: 2.0;
-            easing.period: 1.5 
-            }
-        }
+        Behavior on x { NumberAnimation { duration: 200; easing.type: Easing.OutCubic; easing.amplitude: 2.0; easing.period: 1.5 } }
+        Behavior on y { NumberAnimation { duration: 200; easing.type: Easing.OutCubic; easing.amplitude: 2.0; easing.period: 1.5 } }
 
         width: parent.width
+        focus: true
+        interactive: true
+        boundsBehavior: Flickable.StopAtBounds
+        flickableDirection: Flickable.HorizontalFlick
 
         Keys.onLeftPressed: {
             if (currentIndex > 0) {
@@ -104,13 +116,10 @@ FocusScope {
             }
         }
 
-        focus: true
         onFocusChanged: {
             if (!focus)
                 positionViewAtIndex = 0;
         }
-
-        //Component.onCompleted: currentIndex = 1;
 
         orientation: ListView.Horizontal
         displayMarginBeginning: vpx(150)
@@ -123,16 +132,14 @@ FocusScope {
         clip: false
         model: !searchtext ? gamesListModel : listSearch.games
         delegate: gameBarDelegate
-            
     }
-    
+
     Keys.onDownPressed: { 
         sfxAccept.play(); 
         exitNav(); 
     }
 
-    Keys.onPressed: {                    
-        // Accept
+    Keys.onPressed: {
         if (api.keys.isAccept(event) && !event.isAutoRepeat) {
             event.accepted = true;
             sfxAccept.play();
@@ -141,11 +148,10 @@ FocusScope {
     }
 
     Component {
-    id: gameBarDelegate
-
+        id: gameBarDelegate
+        // ?? (sin cambios aquí, continúa como ya lo tenías)
         Item {
-        id: gameItem
-            
+            id: gameItem
             property bool selected: ListView.isCurrentItem
             property var gameData: searchtext ? modelData : listRecent.currentGame(idx)
             property bool isGame: idx >= 0
@@ -162,10 +168,8 @@ FocusScope {
             height: width
             opacity: active || selected ? 1 : 0
 
-            // Highlight outline
             ItemOutline {
-            id: outline 
-
+                id: outline 
                 width: {
                     if (selected && active)
                         return vpx(125);
@@ -181,10 +185,8 @@ FocusScope {
                 z: 10
             }
 
-            // Black bg
             Rectangle {
-            id: imageBG
-
+                id: imageBG
                 anchors.fill: imageMask
                 radius: imageMask.radius
                 color: "black"
@@ -193,8 +195,7 @@ FocusScope {
             }
 
             Image {
-            id: screenshot
-
+                id: screenshot
                 anchors.fill: imageMask
                 source: gameData ? gameData.assets.screenshots[0] || gameData.assets.boxFront || "" : background
                 fillMode: Image.PreserveAspectCrop
@@ -204,8 +205,7 @@ FocusScope {
                 visible: false
 
                 Image {
-                id: gameLogo
-
+                    id: gameLogo
                     anchors.fill: parent
                     anchors.margins: isGame ? vpx(5) : vpx(20)
                     source: gameData ? Utils.logo(gameData) || "" : icon
@@ -217,8 +217,7 @@ FocusScope {
             }
 
             Rectangle {
-            id: imageMask
-
+                id: imageMask
                 anchors.fill: outline
                 anchors.margins: vpx(4)
                 radius: outline.radius - anchors.margins
@@ -231,11 +230,8 @@ FocusScope {
                 maskSource: imageMask
             }
 
-            
-
             Text {
-            id: gameName
-
+                id: gameName
                 x: active ? vpx(130) : vpx(80)
                 y: active ? vpx(85) : vpx(20)
                 text: idx > -1 ? gameData.title : name
