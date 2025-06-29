@@ -241,6 +241,22 @@ FocusScope {
                 opacity: selected ? 1 : 0
                 Behavior on opacity { NumberAnimation { duration: 50 } }
             }
+            
+            TapHandler {
+                acceptedDevices: PointerDevice.TouchScreen
+                gesturePolicy: TapHandler.WithinBounds
+                onTapped: {
+                    currentIndex = index
+                    sfxAccept.play()
+                    exitNav()
+                }
+                onLongPressed: {
+                    currentIndex = index
+                    sfxAccept.play()
+                    // Puedes lanzar una vista de detalles aquí, o marcar como favorito, etc.
+                    console.log("Long press sobre:", gameData.title)
+                }
+            }
         }
     }
 }
