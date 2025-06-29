@@ -104,16 +104,38 @@ id: root
         //snapMode: ListView.SnapOneItem 
         highlightMoveDuration: 100
 
-        Keys.onUpPressed: { 
-            if (currentIndex == 0) {
-                sfxBack.play();
-                exit();
-            } else {
-                sfxNav.play(); 
-                decrementCurrentIndex();
+        MultiPointTouchArea {
+            anchors.fill: parent
+            minimumTouchPoints: 1
+            maximumTouchPoints: 1
+            property real startY: 0
+
+            onPressed: (touchPoints) => {
+                if (touchPoints.length > 0) startY = touchPoints[0].y
+            }
+
+            onReleased: (touchPoints) => {
+                if (touchPoints.length > 0) {
+                    const deltaY = touchPoints[0].y - startY
+                    if (Math.abs(deltaY) > vpx(50)) {
+                        if (deltaY > 0) {
+                            // Deslizó hacia abajo
+                            if (mainList.currentIndex === 0) {
+                                sfxBack.play()
+                                root.exit()
+                            } else {
+                                sfxNav.play()
+                                mainList.decrementCurrentIndex()
+                            }
+                        } else {
+                            // Deslizó hacia arriba
+                            sfxNav.play()
+                            mainList.incrementCurrentIndex()
+                        }
+                    }
+                }
             }
         }
-        Keys.onDownPressed: { sfxNav.play(); incrementCurrentIndex() }
 
         Component {
         id: headerComponent
