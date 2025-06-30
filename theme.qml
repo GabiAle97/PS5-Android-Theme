@@ -166,6 +166,7 @@ FocusScope {
 
         onPressed: {
             startX = touchPoints[0].x
+            sfxAccept.play()
         }
 
         onReleased: {
@@ -174,17 +175,15 @@ FocusScope {
             if (Math.abs(dx) > 40) {
                 if (dx < 0 && currentCollection < api.collections.count - 1) {
                     nextCollection++
-                    sfxAccept.play()
                 } else if (dx > 0 && currentCollection > 0) {
                     nextCollection--
-                    sfxAccept.play()
                 } else {
                     if (nextCollection == -1){
                         nextCollection = api.collections.count
                     } else {
                         nextCollection = -1
                     }
-                    sfxAccept.play()
+                    
                 }
             }
         }
