@@ -65,9 +65,11 @@ id: root
         visible: icon != ""
     }
 
-    MultiPointTouchArea {
+    MouseArea {
+        anchors.fill: parent
+        hoverEnabled: true
         onPressed: {
-            sfxAccept.play()
+            activated();
         }
     }
 
