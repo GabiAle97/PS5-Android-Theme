@@ -68,9 +68,6 @@ id: root
     TapHandler {
         acceptedDevices: PointerDevice.TouchScreen
         gesturePolicy: TapHandler.WithinBounds
-        onTapped: {
-            activated();
-        }
     }
 
     Keys.onPressed: {
