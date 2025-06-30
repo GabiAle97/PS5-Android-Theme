@@ -15,7 +15,6 @@ FocusScope {
     property alias currentIndex: gameNav.currentIndex
     property alias list: gameNav
     property bool active
-    property bool switch
 
     ListModel {
         id: gamesListModel
@@ -254,13 +253,7 @@ FocusScope {
                 onLongPressed: {
                     currentIndex = index
                     sfxAccept.play()
-                    if (switch) {
-                        exitNav();
-                        switch = false;
-                    } else {
-                        gameNav();
-                        switch = true;
-                    }
+                    active ? gameNav() : exitNav()
                 }
             }
         }
