@@ -161,7 +161,6 @@ FocusScope {
 
     MultiPointTouchArea {
         anchors.fill: parent
-        propagateComposedEvents: true
         property real startX
 
         onPressed: {
