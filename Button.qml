@@ -65,10 +65,11 @@ id: root
         visible: icon != ""
     }
 
-    MouseArea {
-        anchors.fill: parent
-        hoverEnabled: true
-        onPressed: {
+    TapHandler {
+        acceptedDevices: PointerDevice.TouchScreen
+        gesturePolicy: TapHandler.WithinBounds
+        grabPermissions: PointerHandler.CanTakeOverFromAnything
+        onTapped: {
             activated();
         }
     }
