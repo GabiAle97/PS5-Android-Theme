@@ -177,6 +177,8 @@ FocusScope {
                     nextCollection++
                 } else if (dx > 0 && currentCollection > 0) {
                     nextCollection--
+                } else {
+                    nextCollection = -1
                 }
             }
         }
