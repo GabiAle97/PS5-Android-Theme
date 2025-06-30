@@ -139,11 +139,13 @@ FocusScope {
         exitNav(); 
     }
 
-    Keys.onPressed: {
-        if (api.keys.isAccept(event) && !event.isAutoRepeat) {
-            event.accepted = true;
-            sfxAccept.play();
-            exitNav();
+    TapHandler {
+        onTapped: {
+            if (api.keys.isAccept(event) && !event.isAutoRepeat) {
+                event.accepted = true;
+                sfxAccept.play();
+                exitNav();
+            }
         }
     }
 

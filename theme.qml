@@ -156,7 +156,9 @@ FocusScope {
         api.memory.unset('Last Collection');
     }
 
-    Keys.onPressed: {
+    TapHandler {
+        onTapped: {
+        }
     }
 
 

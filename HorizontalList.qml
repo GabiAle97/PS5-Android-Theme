@@ -70,17 +70,19 @@ id: root
             gameData: modelData
             radius: vpx(2)
 
-            Keys.onPressed: {                
-                if (api.keys.isCancel(event) && !event.isAutoRepeat) {
-                    event.accepted = true;
-                    sfxBack.play();
-                    navigationMenu();
-                }
+            TapHandler {
+                onTapped: {                
+                    if (api.keys.isCancel(event) && !event.isAutoRepeat) {
+                        event.accepted = true;
+                        sfxBack.play();
+                        navigationMenu();
+                    }
 
-                if (api.keys.isDetails(event) && !event.isAutoRepeat) {
-                    event.accepted = true;
-                    sfxToggle.play();
-                    modelData.favorite = !modelData.favorite;
+                    if (api.keys.isDetails(event) && !event.isAutoRepeat) {
+                        event.accepted = true;
+                        sfxToggle.play();
+                        modelData.favorite = !modelData.favorite;
+                    }
                 }
             }
         }

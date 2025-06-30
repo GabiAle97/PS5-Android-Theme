@@ -105,17 +105,19 @@ id: root
                 height:     GridView.view.cellHeight
                 radius:     vpx(2)
 
-                Keys.onPressed: {                    
-                    if (api.keys.isCancel(event) && !event.isAutoRepeat) {
-                        event.accepted = true;
-                        sfxBack.play();
-                        exit();
-                    }
+                TapHandler {
+                    onTapped: {                    
+                        if (api.keys.isCancel(event) && !event.isAutoRepeat) {
+                            event.accepted = true;
+                            sfxBack.play();
+                            exit();
+                        }
 
-                    if (api.keys.isDetails(event) && !event.isAutoRepeat) {
-                        event.accepted = true;
-                        sfxToggle.play();
-                        modelData.favorite = !modelData.favorite;
+                        if (api.keys.isDetails(event) && !event.isAutoRepeat) {
+                            event.accepted = true;
+                            sfxToggle.play();
+                            modelData.favorite = !modelData.favorite;
+                        }
                     }
                 }
             }
