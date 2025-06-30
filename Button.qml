@@ -44,7 +44,7 @@ Item {
 
     Image {
         id: iconImage
-        source: icon W
+        source: icon
         sourceSize: Qt.size(parent.width, parent.height)
         anchors.fill: container
         anchors.margins: vpx(17)
@@ -58,6 +58,4 @@ Item {
         color: isSelected ? "black" : hlColor
         visible: icon != ""
     }
-
-
 }
