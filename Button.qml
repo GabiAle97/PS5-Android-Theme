@@ -68,7 +68,6 @@ id: root
     TapHandler {
         acceptedDevices: PointerDevice.TouchScreen
         gesturePolicy: TapHandler.WithinBounds
-        grabPermissions: PointerHandler.CanTakeOverFromAnything
         onTapped: {
             activated();
         }
