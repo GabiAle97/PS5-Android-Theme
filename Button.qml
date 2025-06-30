@@ -60,8 +60,11 @@ Item {
     }
 
     TapHandler {
+        acceptedDevices: PointerDevice.TouchScreen
+        gesturePolicy: TapHandler.WithinBounds
         onTapped: {
             sfxAccept.play()
+            root.activated()
         }
     }
 
