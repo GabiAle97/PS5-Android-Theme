@@ -245,7 +245,7 @@ FocusScope {
             TapHandler {
                 acceptedDevices: PointerDevice.TouchScreen
                 gesturePolicy: TapHandler.WithinBounds
-                grabPermissions: PointerHandler.ApprovesTakeOverByAnything
+                grabPermissions: PointerHandler.CanTakeOverFromAnything
                 onLongPressed: {
                     currentIndex = index
                     sfxAccept.play()
