@@ -66,7 +66,7 @@ FocusScope {
         minimumTouchPoints: 1
         maximumTouchPoints: 1
         enabled: active
-        grabPermissions: PointerHandler.CanTakeOverFromAnything
+        grabPermissions: PointerDevice.CanTakeOverFromAnything
 
         property real startX
 
