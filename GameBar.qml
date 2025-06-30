@@ -250,10 +250,10 @@ FocusScope {
                     if (currentIndex == index){
                         currentIndex = index
                         sfxAccept.play()
+                        currentView.focus == true ? navigationMenu() : exitNav()
                     } else {
                         currentIndex = index
                         sfxAccept.play()
-                        currentView.focus == true ? navigationMenu() : exitNav()
                     } 
                 }
             }
