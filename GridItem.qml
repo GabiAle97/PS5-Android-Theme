@@ -255,7 +255,9 @@ id: root
         // Mouse/touch functionality
         
         TapHandler {
-            anchors.fill: parent
+            acceptedDevices: PointerDevice.TouchScreen
+            gesturePolicy: TapHandler.WithinBounds
+            grabPermissions: PointerHandler.CanTakeOverFromAnything
             onTapped: {
                 launchGame(gameData);
                 activated();
