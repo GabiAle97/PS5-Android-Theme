@@ -156,8 +156,8 @@ id: root
 //                        }
 //                    }
 //                }
-//            }
-//
+            }
+
             Image {
             id: boxart
 
