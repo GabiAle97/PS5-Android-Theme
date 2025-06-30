@@ -1,5 +1,5 @@
-import QtQuick 2.0
-import QtGraphicalEffects 1.0
+import QtQuick 2.12
+import QtGraphicalEffects 1.12
 
 Item {
     id: root
@@ -59,12 +59,7 @@ Item {
         visible: icon != ""
     }
 
-    MouseArea {
-        id: touchArea
-        anchors.fill: parent
-        onClicked: {
-            activated()
-        }
+    TapHandler {
     }
 
     Keys.onPressed: {
