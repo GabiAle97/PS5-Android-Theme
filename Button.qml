@@ -27,16 +27,6 @@ Item {
         radius: height / 2
         opacity: isSelected ? 1 : 0.05
         color: isSelected ? hlColor : "white"
-        TapHandler {
-            acceptedDevices: PointerDevice.TouchScreen
-            gesturePolicy: TapHandler.WithinBounds
-            onTapped: {
-                isSelected = false
-            }
-            onDoubleTapped: {
-                isSelected = true
-            }
-        }
     }
 
     Text {
@@ -54,7 +44,7 @@ Item {
 
     Image {
         id: iconImage
-        source: icon
+        source: icon W
         sourceSize: Qt.size(parent.width, parent.height)
         anchors.fill: container
         anchors.margins: vpx(17)
@@ -67,5 +57,14 @@ Item {
         source: iconImage
         color: isSelected ? "black" : hlColor
         visible: icon != ""
+    }
+
+    // Agregar MouseArea para manejar eventos táctiles/clics
+    MouseArea {
+        anchors.fill: parent
+        onClicked: {
+            sfxAccepted.play() // Reproducir el sonido al tocar/clic
+            root.activated()   // Emitir la señal activated si es necesario
+        }
     }
 }
