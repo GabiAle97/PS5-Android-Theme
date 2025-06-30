@@ -174,25 +174,6 @@ FocusScope {
                 navigationMenu();
             }
         }
-        onSwipe: {
-            if (swipe.direction === Qt.Left) {
-                sfxToggle.play();
-                if (currentCollection < api.collections.count - 1) {
-                    nextCollection++;
-                } else {
-                    nextCollection = -1;
-                }
-                navigationMenu();
-            } else if (swipe.direction === Qt.Right) {
-                sfxToggle.play();
-                if (currentCollection == -1) {
-                    nextCollection = api.collections.count - 1;
-                } else {
-                    nextCollection--;
-                }
-                navigationMenu();
-            }
-        }
     }
 
     // Background
