@@ -67,11 +67,4 @@ Item {
             activated()
         }
     }
-
-    Keys.onPressed: {
-        if (api.keys.isAccept(event) && !event.isAutoRepeat) {
-            event.accepted = true;
-            activated();
-        }
-    }
 }
