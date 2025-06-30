@@ -255,7 +255,7 @@ FocusScope {
                 onLongPressed: {
                     currentIndex = index
                     sfxAccept.play()
-                    mainList()
+                    navigationMenu()
                 }
             }
         }
