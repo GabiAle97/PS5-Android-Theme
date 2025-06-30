@@ -179,7 +179,11 @@ FocusScope {
                     nextCollection--
                     sfxAccept.play()
                 } else {
-                    nextCollection = -1
+                    if (nextCollection == -1){
+                        nextCollection = api.collections.count
+                    } else {
+                        nextCollection = -1
+                    }
                     sfxAccept.play()
                 }
             }
