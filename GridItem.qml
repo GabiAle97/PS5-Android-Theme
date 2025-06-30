@@ -14,6 +14,7 @@ id: root
     
     // List specific input
     TapHandler{
+        z: 1000
         onTapped: {
             // Accept
             if (api.keys.isAccept(event) && !event.isAutoRepeat) {
