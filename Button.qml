@@ -27,11 +27,19 @@ Item {
         radius: height / 2
         opacity: isSelected ? 1 : 0.05
         color: isSelected ? hlColor : "white"
+        TapHandler {
+            acceptedDevices: PointerDevice.TouchScreen
+            gesturePolicy: TapHandler.WithinBounds
+            onLongPressed: {
+                event.accepted = true
+                activated()
+            }
+        }
     }
 
     Text {
         id: buttonText
-        text: "JUGAR"
+        text: "Play"
         font.pixelSize: vpx(18)
         font.family: bodyFont.name
         font.bold: true
@@ -57,14 +65,5 @@ Item {
         source: iconImage
         color: isSelected ? "black" : hlColor
         visible: icon != ""
-    }
-
-    TapHandler {
-        acceptedDevices: PointerDevice.TouchScreen
-        gesturePolicy: TapHandler.WithinBounds
-        onLongPressed: {
-            event.accepted = true
-            activated()
-        }
     }
 }
