@@ -248,9 +248,8 @@ FocusScope {
                 grabPermissions: PointerHandler.CanTakeOverFromAnything
                 onTapped: {
                     currentIndex = index
-                    currentGameIndex = index
                     sfxAccept.play()
-                    mainList()
+                    exitNav()
                 }
             }
         }
