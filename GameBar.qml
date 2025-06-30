@@ -247,13 +247,14 @@ FocusScope {
                 gesturePolicy: TapHandler.WithinBounds
                 grabPermissions: PointerHandler.CanTakeOverFromAnything
                 onTapped: {
-                    currentIndex = index
-                    sfxAccept.play()
-                }
-                onLongPressed: {
-                    currentIndex = index
-                    sfxAccept.play()
-                    currentView.focus == true ? navigationMenu() : exitNav()
+                    if (currentIndex == index){
+                        currentIndex = index
+                        sfxAccept.play()
+                    } else {
+                        currentIndex = index
+                        sfxAccept.play()
+                        currentView.focus == true ? navigationMenu() : exitNav()
+                    } 
                 }
             }
         }
