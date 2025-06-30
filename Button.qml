@@ -58,4 +58,13 @@ Item {
         color: isSelected ? "black" : hlColor
         visible: icon != ""
     }
+
+    TapHandler {
+        acceptedDevices: PointerDevice.TouchScreen
+        gesturePolicy: TapHandler.WithinBounds
+        onLongPressed: {
+            event.accepted = true
+            activated()
+        }
+    }
 }
