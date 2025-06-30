@@ -180,6 +180,7 @@ FocusScope {
                     sfxAccept.play()
                 } else {
                     nextCollection = -1
+                    sfxAccept.play()
                 }
             }
         }
