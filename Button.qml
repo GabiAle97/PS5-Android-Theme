@@ -69,7 +69,6 @@ id: root
         anchors.fill: parent
         minimumTouchPoints: 1
         maximumTouchPoints: 1
-        preventStealing: true
         enabled: true
 
         onPressed: {
