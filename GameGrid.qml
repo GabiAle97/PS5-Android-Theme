@@ -67,7 +67,6 @@ id: root
     id: gridHeader 
 
         Item {
-            
             height: vpx(100)
         }
     }
@@ -82,25 +81,17 @@ id: root
             left: parent.left; leftMargin: vpx(125)
             right: parent.right; rightMargin: vpx(125)
         }
-        
+
         focus: true
         cellWidth: width / numColumns
         cellHeight: vpx(250)
-        
+
         preferredHighlightBegin: vpx(100)
         preferredHighlightEnd: parent.height
         highlightRangeMode: ListView.ApplyRange
         header: gridHeader
         model: currentList.games
         delegate: boxartDelegate
-
-        // We need to set to -1 so there are no selections in the grid
-        //currentIndex: focus ? currentGameIndex : -1
-        /*onCurrentIndexChanged: {
-            // Ensure that the game index is never set to -1
-            if (currentIndex != -1)
-                currentGameIndex = currentIndex;
-        }*/
 
         Component {
         id: boxartDelegate
@@ -114,16 +105,13 @@ id: root
                 height:     GridView.view.cellHeight
                 radius:     vpx(2)
 
-                // List specific input
                 Keys.onPressed: {                    
-                    // Back
                     if (api.keys.isCancel(event) && !event.isAutoRepeat) {
                         event.accepted = true;
                         sfxBack.play();
                         exit();
                     }
 
-                    // Favorites
                     if (api.keys.isDetails(event) && !event.isAutoRepeat) {
                         event.accepted = true;
                         sfxToggle.play();
@@ -134,27 +122,56 @@ id: root
         }
 
         property int col: currentIndex % 4;
-        Keys.onLeftPressed: {
-            sfxNav.play();
-            moveCurrentIndexLeft();
-        }
-        Keys.onRightPressed: {
-            sfxNav.play();
-            moveCurrentIndexRight();
-        }
-        Keys.onUpPressed: {
-            
-            if (currentIndex >= numColumns) {
-                sfxNav.play();
-                moveCurrentIndexUp();
-            } else {
-                sfxBack.play();
-                exit();
+
+        // GESTOS EN VEZ DE TECLAS
+        MultiPointTouchArea {
+            anchors.fill: parent
+            minimumTouchPoints: 1
+            maximumTouchPoints: 1
+
+            property real startX
+            property real startY
+            property bool handled: false
+
+            onPressed: (touchPoints) => {
+                if (touchPoints.length === 1) {
+                    startX = touchPoints[0].x;
+                    startY = touchPoints[0].y;
+                    handled = false;
+                }
             }
-        }
-        Keys.onDownPressed: {
-            sfxNav.play();
-            moveCurrentIndexDown();
+
+            onReleased: (touchPoints) => {
+                if (touchPoints.length === 1 && !handled) {
+                    var dx = touchPoints[0].x - startX;
+                    var dy = touchPoints[0].y - startY;
+
+                    if (Math.abs(dx) > Math.abs(dy)) {
+                        if (dx > 40) {
+                            sfxNav.play();
+                            gamegrid.moveCurrentIndexLeft();
+                        } else if (dx < -40) {
+                            sfxNav.play();
+                            gamegrid.moveCurrentIndexRight();
+                        }
+                    } else {
+                        if (dy > 40) {
+                            if (gamegrid.currentIndex >= numColumns) {
+                                sfxNav.play();
+                                gamegrid.moveCurrentIndexUp();
+                            } else {
+                                sfxBack.play();
+                                root.exit();
+                            }
+                        } else if (dy < -40) {
+                            sfxNav.play();
+                            gamegrid.moveCurrentIndexDown();
+                        }
+                    }
+
+                    handled = true;
+                }
+            }
         }
     }
 }
