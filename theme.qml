@@ -174,16 +174,17 @@ FocusScope {
             var dx = endX - startX
             if (Math.abs(dx) > 40) {
                 if (dx < 0 && currentCollection < api.collections.count - 1) {
-                    nextCollection++
+                    if (nextCollection == api.collections.count) {
+                        nextCollection = -1
+                    } else {
+                        nextCollection++
+                    }
                 } else if (dx > 0 && currentCollection > 0) {
-                    nextCollection--
-                } else {
                     if (nextCollection == 0){
                         nextCollection = api.collections.count
-                    } else if (nextCollection == api.collections.count) {
-                        nextCollection = -1
+                    } else{
+                        nextCollection--
                     }
-                    
                 }
             }
         }
