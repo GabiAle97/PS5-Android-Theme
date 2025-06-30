@@ -159,6 +159,37 @@ FocusScope {
     Keys.onPressed: {
     }
 
+    MultiPointTouchArea {
+        anchors.fill: parent
+
+        property real startY
+
+        onPressed: {
+            sfxAccept.play();
+            startY = touchPoints[0].y
+        }
+        
+        onReleased: {
+            var endY = touchPoints[0].y
+            var dy = endY - startY
+            if (Math.abs(dY) > 40) {
+                if (dy < 0 && gameNav.currentIndex < gameNav.count - 1) {
+                    if (currentCollection < api.collections.count - 1) {
+                        nextCollection++;
+                    } else {
+                        nextCollection = -1;
+                    }
+                } else if (dy > 0 && gameNav.currentIndex > 0) {
+                    if (currentCollection < api.collections.count - 1) {
+                        nextCollection--;
+                    } else {
+                        nextCollection = -1;
+                    }
+                }
+                navigationMenu();
+            }
+        }
+    }
 
     // Background
     Item {
