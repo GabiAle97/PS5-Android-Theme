@@ -140,24 +140,24 @@ id: root
                 model: gameNavModel
                 keyNavigationWraps: true
 
-                MultiPointTouchArea {
-                    anchors.fill: parent
-
-                    onReleased: {
-                        const dx = touchPoints[0].startX - touchPoints[0].x;
-                        if (Math.abs(dx) > 40) {
-                            if (dx > 0) {
-                                sfxNav.play();
-                                gameNav.incrementCurrentIndex();
-                            } else {
-                                sfxNav.play();
-                                gameNav.decrementCurrentIndex();
-                            }
-                        }
-                    }
-                }
-            }
-
+//                MultiPointTouchArea {
+//                    anchors.fill: parent
+//
+//                    onReleased: {
+//                        const dx = touchPoints[0].startX - touchPoints[0].x;
+//                        if (Math.abs(dx) > 40) {
+//                            if (dx > 0) {
+//                                sfxNav.play();
+//                                gameNav.incrementCurrentIndex();
+//                            } else {
+//                                sfxNav.play();
+//                                gameNav.decrementCurrentIndex();
+//                            }
+//                        }
+//                    }
+//                }
+//            }
+//
             Image {
             id: boxart
 
@@ -255,26 +255,26 @@ id: root
         snapMode: ListView.SnapOneItem 
         highlightMoveDuration: 100
 
-        MultiPointTouchArea {
-            anchors.fill: parent
-
-            onReleased: {
-                const dy = touchPoints[0].startY - touchPoints[0].y;
-                if (Math.abs(dy) > 50) {
-                    if (dy > 0) {
-                        sfxNav.play(); 
-                        mainList.incrementCurrentIndex();
-                    } else {
-                        if (mainList.currentIndex === 0) {
-                            sfxBack.play();
-                            root.exit();
-                        } else {
-                            sfxNav.play(); 
-                            mainList.decrementCurrentIndex();
-                        }
-                    }
-                }
-            }
-        }
+//        MultiPointTouchArea {
+//            anchors.fill: parent
+//
+//            onReleased: {
+//                const dy = touchPoints[0].startY - touchPoints[0].y;
+//                if (Math.abs(dy) > 50) {
+//                    if (dy > 0) {
+//                        sfxNav.play(); 
+//                        mainList.incrementCurrentIndex();
+//                    } else {
+//                        if (mainList.currentIndex === 0) {
+//                            sfxBack.play();
+//                            root.exit();
+//                        } else {
+//                            sfxNav.play(); 
+//                            mainList.decrementCurrentIndex();
+//                        }
+//                    }
+//                }
+//            }
+//        }
     }
 }

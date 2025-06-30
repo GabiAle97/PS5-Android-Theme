@@ -126,54 +126,54 @@ id: root
         property int col: currentIndex % 4;
 
         // GESTOS EN VEZ DE TECLAS
-        MultiPointTouchArea {
-            anchors.fill: parent
-            minimumTouchPoints: 1
-            maximumTouchPoints: 1
-
-            property real startX
-            property real startY
-            property bool handled: false
-
-            onPressed: (touchPoints) => {
-                if (touchPoints.length === 1) {
-                    startX = touchPoints[0].x;
-                    startY = touchPoints[0].y;
-                    handled = false;
-                }
-            }
-
-            onReleased: (touchPoints) => {
-                if (touchPoints.length === 1 && !handled) {
-                    var dx = touchPoints[0].x - startX;
-                    var dy = touchPoints[0].y - startY;
-
-                    if (Math.abs(dx) > Math.abs(dy)) {
-                        if (dx > 40) {
-                            sfxNav.play();
-                            gamegrid.moveCurrentIndexLeft();
-                        } else if (dx < -40) {
-                            sfxNav.play();
-                            gamegrid.moveCurrentIndexRight();
-                        }
-                    } else {
-                        if (dy > 40) {
-                            if (gamegrid.currentIndex >= numColumns) {
-                                sfxNav.play();
-                                gamegrid.moveCurrentIndexUp();
-                            } else {
-                                sfxBack.play();
-                                root.exit();
-                            }
-                        } else if (dy < -40) {
-                            sfxNav.play();
-                            gamegrid.moveCurrentIndexDown();
-                        }
-                    }
-
-                    handled = true;
-                }
-            }
-        }
+//        MultiPointTouchArea {
+//            anchors.fill: parent
+//            minimumTouchPoints: 1
+//            maximumTouchPoints: 1
+//
+//            property real startX
+//            property real startY
+//            property bool handled: false
+//
+//            onPressed: (touchPoints) => {
+//                if (touchPoints.length === 1) {
+//                    startX = touchPoints[0].x;
+//                    startY = touchPoints[0].y;
+//                    handled = false;
+//                }
+//            }
+//
+//            onReleased: (touchPoints) => {
+//                if (touchPoints.length === 1 && !handled) {
+//                    var dx = touchPoints[0].x - startX;
+//                    var dy = touchPoints[0].y - startY;
+//
+//                    if (Math.abs(dx) > Math.abs(dy)) {
+//                        if (dx > 40) {
+//                            sfxNav.play();
+//                            gamegrid.moveCurrentIndexLeft();
+//                        } else if (dx < -40) {
+//                            sfxNav.play();
+//                            gamegrid.moveCurrentIndexRight();
+//                        }
+//                    } else {
+//                        if (dy > 40) {
+//                            if (gamegrid.currentIndex >= numColumns) {
+//                                sfxNav.play();
+//                                gamegrid.moveCurrentIndexUp();
+//                            } else {
+//                                sfxBack.play();
+//                                root.exit();
+//                            }
+//                        } else if (dy < -40) {
+//                            sfxNav.play();
+//                            gamegrid.moveCurrentIndexDown();
+//                        }
+//                    }
+//
+//                    handled = true;
+//                }
+//            }
+//        }
     }
 }

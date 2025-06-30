@@ -247,24 +247,24 @@ id: root
             }
         }
 
-        MultiPointTouchArea{
-            onPressed: {
-                console.log("pressed")
-                if (api.keys.isAccept(event) && !event.isAutoRepeat) {
-                    event.accepted = true;
-                    sfxAccept.play();
-                    launchGame(gameData);
-                    activated();
-                }
-
-                // Favorite
-                if (api.keys.isFilters(event) && !event.isAutoRepeat) {
-                    event.accepted = true;
-                    sfxToggle.play();
-                    gameData.favorite = !gameData.favorite
-                }
-            }
-        }
+//        MultiPointTouchArea{
+//            onPressed: {
+//                console.log("pressed")
+//                if (api.keys.isAccept(event) && !event.isAutoRepeat) {
+//                    event.accepted = true;
+//                    sfxAccept.play();
+//                    launchGame(gameData);
+//                    activated();
+//                }
+//
+//                // Favorite
+//                if (api.keys.isFilters(event) && !event.isAutoRepeat) {
+//                    event.accepted = true;
+//                    sfxToggle.play();
+//                    gameData.favorite = !gameData.favorite
+//                }
+//            }
+//        }
     }
 
     Text {
