@@ -18,7 +18,7 @@ FocusScope {
 
     ListModel {
         id: gamesListModel
-        property var activeCollection: currentCollection != -1 ? api.collections.get(currentCollection).games : api.allGames
+        property var activeCollection:  currentCollection!=-1 ? api.collections.get(currentCollection).games : api.allGames
 
         Component.onCompleted: {
             clear();
@@ -39,7 +39,7 @@ FocusScope {
                 "icon":         "assets/images/navigation/Explore.png",
                 "background":   ""
             })
-            for (var i = 0; i < gamesCounter; i++) {
+            for (var i=0; i<gamesCounter; i++) {
                 append(createListElement(i));
             }
             append({
@@ -60,6 +60,7 @@ FocusScope {
         }
     }
 
+    // ?? MultiPointTouchArea para swipes táctiles
     MultiPointTouchArea {
         anchors.fill: parent
         minimumTouchPoints: 1
@@ -67,30 +68,15 @@ FocusScope {
         enabled: active
 
         property real startX
-        property real startY
-        property bool isSwipe: false
 
         onPressed: {
             startX = touchPoints[0].x
-            startY = touchPoints[0].y
-            isSwipe = false
-        }
-
-        onUpdated: {
-            var currentX = touchPoints[0].x
-            var currentY = touchPoints[0].y
-            var dx = currentX - startX
-            var dy = currentY - startY
-            // Considerar un deslizamiento solo si el movimiento horizontal es significativo
-            if (Math.abs(dx) > 40 && Math.abs(dy) < 50) {
-                isSwipe = true
-            }
         }
 
         onReleased: {
             var endX = touchPoints[0].x
             var dx = endX - startX
-            if (isSwipe && Math.abs(dx) > 40) {
+            if (Math.abs(dx) > 40) {
                 if (dx < 0 && gameNav.currentIndex < gameNav.count - 1) {
                     gameNav.incrementCurrentIndex()
                     sfxNav.play()
@@ -98,10 +84,6 @@ FocusScope {
                     gameNav.decrementCurrentIndex()
                     sfxNav.play()
                 }
-            }
-            // No aceptar el evento si no es un deslizamiento, para que TapHandler lo procese
-            if (!isSwipe) {
-                touchPoints[0].accepted = false
             }
         }
     }
@@ -128,7 +110,7 @@ FocusScope {
             }
         }
         Keys.onRightPressed: {
-            if (currentIndex < count - 1) {
+            if (currentIndex < count-1) {
                 sfxNav.play();
                 incrementCurrentIndex();
             }
@@ -167,6 +149,7 @@ FocusScope {
 
     Component {
         id: gameBarDelegate
+        // ?? (sin cambios aquí, continúa como ya lo tenías)
         Item {
             id: gameItem
             property bool selected: ListView.isCurrentItem
@@ -183,7 +166,7 @@ FocusScope {
 
             width: outline.width
             height: width
-            opacity: active || death ? 1 : 0
+            opacity: active || selected ? 1 : 0
 
             ItemOutline {
                 id: outline 
