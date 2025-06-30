@@ -10,7 +10,7 @@ Item {
     property string hlColor: "white"
 
     height: vpx(50)
-    enabled: true
+
     signal activated
 
     ItemOutline {
@@ -59,11 +59,10 @@ Item {
         visible: icon != ""
     }
 
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            sfxAccepted.play() // Reproducir el sonido al tocar/clic
-            root.activated()   // Emitir la señal activated si es necesario
+    Keys.onPressed: {
+        if (api.keys.isAccept(event) && !event.isAutoRepeat) {
+            event.accepted = true;
+            activated();
         }
     }
 }
