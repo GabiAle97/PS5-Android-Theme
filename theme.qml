@@ -173,7 +173,7 @@ FocusScope {
             var dY = endY - startY
             if (Math.abs(dY) > 40) {
                 sfxAccept.play();
-                if (dY < 0 && gameNav.currentIndex < gameNav.count - 1) {
+                if (dY < 0) {
                     sfxAccept.play();
                     sfxAccept.play();
                     if (currentCollection < api.collections.count - 1) {
@@ -188,7 +188,7 @@ FocusScope {
                         sfxAccept.play();
                         nextCollection = -1;
                     }
-                } else if (dY > 0 && gameNav.currentIndex > 0) {
+                } else if (dY > 0) {
                     sfxAccept.play();
                     sfxAccept.play();
                     sfxAccept.play();
