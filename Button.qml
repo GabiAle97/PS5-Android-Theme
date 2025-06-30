@@ -67,7 +67,6 @@ id: root
 
     MultiPointTouchArea {
         anchors.fill: parent
-        preventStealing: true
         enabled: true
 
         onPressed: {
