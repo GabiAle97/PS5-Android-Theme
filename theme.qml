@@ -170,8 +170,8 @@ FocusScope {
         
         onReleased: {
             var endY = touchPoints[0].y
-            var dy = endY - startY
-            if (Math.abs(dY) > 10) {
+            var dY = endY - startY
+            if (Math.abs(dY) > 40) {
                 sfxAccept.play();
                 if (dy < 0 && gameNav.currentIndex < gameNav.count - 1) {
                     sfxAccept.play();
