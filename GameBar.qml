@@ -249,6 +249,7 @@ FocusScope {
                 onTapped: {
                     currentIndex = index
                     sfxAccept.play()
+                    mainList()
                 }
             }
         }
