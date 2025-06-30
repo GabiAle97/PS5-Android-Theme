@@ -72,7 +72,6 @@ id: root
         enabled: true
 
         onPressed: {
-            touchPoints[0].grab(this)
             sfxAccept.play()
         }
     }
