@@ -32,7 +32,7 @@ Item {
             gesturePolicy: TapHandler.WithinBounds
             onLongPressed: {
                 event.accepted = true
-                activated()
+                navigationMenu()
             }
         }
     }
