@@ -162,58 +162,23 @@ FocusScope {
     MultiPointTouchArea {
         anchors.fill: parent
 
-        property real startY
+        property real startX
 
         onPressed: {
-            startY = touchPoints[0].y
+            startX = touchPoints[0].x
         }
-        
+
         onReleased: {
-            var endY = touchPoints[0].y
-            var dY = endY - startY
-            if (Math.abs(dY) > 40) {
-                sfxAccept.play();
-                if (dY < 0) {
-                    sfxAccept.play();
-                    sfxAccept.play();
-                    if (currentCollection < api.collections.count - 1) {
-                        sfxAccept.play();
-                        sfxAccept.play();
-                        sfxAccept.play();
-                        nextCollection++;
-                    } else {
-                        sfxAccept.play();
-                        sfxAccept.play();
-                        sfxAccept.play();
-                        sfxAccept.play();
-                        nextCollection = -1;
-                    }
-                } else if (dY > 0) {
-                    sfxAccept.play();
-                    sfxAccept.play();
-                    sfxAccept.play();
-                    sfxAccept.play();
-                    sfxAccept.play();
-                    if (currentCollection < api.collections.count - 1) {
-                        sfxAccept.play();
-                        sfxAccept.play();
-                        sfxAccept.play();
-                        sfxAccept.play();
-                        sfxAccept.play();
-                        sfxAccept.play();
-                        nextCollection--;
-                    } else {
-                        sfxAccept.play();
-                        sfxAccept.play();
-                        sfxAccept.play();
-                        sfxAccept.play();
-                        sfxAccept.play();
-                        sfxAccept.play();
-                        sfxAccept.play();
-                        nextCollection = -1;
-                    }
+            var endX = touchPoints[0].x
+            var dx = endX - startX
+            if (Math.abs(dx) > 40) {
+                if (dx < 0 && currentCollection < api.collections.count - 1) {
+                    nextCollection++
+                    sfxNav.play()
+                } else if (dx > 0 && currentCollection > 0) {
+                    nextCollection--
+                    sfxNav.play()
                 }
-                navigationMenu();
             }
         }
     }
