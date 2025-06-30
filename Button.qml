@@ -65,12 +65,7 @@ id: root
         visible: icon != ""
     }
 
-    TapHandler {
 
-        onTapped: {
-            sfxAccept.play()
-        }
-    }
 
     Keys.onPressed: {
         if (api.keys.isAccept(event) && !event.isAutoRepeat) {
