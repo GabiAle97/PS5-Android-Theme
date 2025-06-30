@@ -249,16 +249,12 @@ FocusScope {
                 onTapped: {
                     currentIndex = index
                     sfxAccept.play()
+                    exitNav ? "" : gameNav()
                 }
                 onLongPressed: {
                     currentIndex = index
                     sfxAccept.play()
                     exitNav()
-                }
-                onDoubleTapped: {
-                    currentIndex = index
-                    sfxAccept.play()
-                    gameNav()
                 }
             }
         }
