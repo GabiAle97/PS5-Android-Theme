@@ -65,8 +65,10 @@ id: root
         visible: icon != ""
     }
 
-    TapHandler.onTapped: {
+    TapHandler {
+        onTapped: {
             sfxAccept.play()
+            root.activated()
         }
     }
 
