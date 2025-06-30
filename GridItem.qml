@@ -256,7 +256,6 @@ id: root
         
         TapHandler {
             anchors.fill: parent
-            hoverEnabled: true
             onTapped: {
                 launchGame(gameData);
                 activated();
