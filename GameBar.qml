@@ -60,34 +60,6 @@ FocusScope {
         }
     }
 
-    // ?? MultiPointTouchArea para swipes táctiles
-    MultiPointTouchArea {
-        anchors.fill: parent
-        minimumTouchPoints: 1
-        maximumTouchPoints: 1
-        enabled: active
-
-        property real startX
-
-        onPressed: {
-            startX = touchPoints[0].x
-        }
-
-        onReleased: {
-            var endX = touchPoints[0].x
-            var dx = endX - startX
-            if (Math.abs(dx) > 40) {
-                if (dx < 0 && gameNav.currentIndex < gameNav.count - 1) {
-                    gameNav.incrementCurrentIndex()
-                    sfxNav.play()
-                } else if (dx > 0 && gameNav.currentIndex > 0) {
-                    gameNav.decrementCurrentIndex()
-                    sfxNav.play()
-                }
-            }
-        }
-    }
-
     ListView {
         id: gameNav
 
