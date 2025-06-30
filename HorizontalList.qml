@@ -21,8 +21,7 @@ id: root
     signal listHighlighted
 
     Text {
-    id: collectiontitle
-
+        id: collectiontitle
         text: collectionData.name
         font.family: subtitleFont.name
         font.pixelSize: vpx(20)
@@ -34,7 +33,7 @@ id: root
     }
 
     ListView {
-    id: collectionList
+        id: collectionList
 
         focus: root.focus
         anchors {
@@ -51,7 +50,7 @@ id: root
         snapMode: ListView.SnapOneItem 
         highlightMoveDuration: 100
         displayMarginEnd: itemWidth*2
-        
+
         property int savedIndex: 0
         onFocusChanged: {
             if (focus)
@@ -60,7 +59,6 @@ id: root
                 savedIndex = currentIndex;
                 currentIndex = -1;
             }
-                
         }
 
         currentIndex: focus ? savedIndex : -1
@@ -72,16 +70,13 @@ id: root
             gameData: modelData
             radius: vpx(2)
 
-            // List specific input
             Keys.onPressed: {                
-                // Back
                 if (api.keys.isCancel(event) && !event.isAutoRepeat) {
                     event.accepted = true;
                     sfxBack.play();
                     navigationMenu();
                 }
 
-                // Favorites
                 if (api.keys.isDetails(event) && !event.isAutoRepeat) {
                     event.accepted = true;
                     sfxToggle.play();
@@ -90,16 +85,30 @@ id: root
             }
         }
 
-        Keys.onLeftPressed: {
-            if (currentIndex != 0) { 
-                sfxNav.play(); 
-                collectionList.decrementCurrentIndex();
-            }
-        }
-        Keys.onRightPressed: { 
-            if (currentIndex < count-1) {
-                sfxNav.play(); 
-                collectionList.incrementCurrentIndex();
+        // Reemplazamos las teclas por gestos
+        MultiPointTouchArea {
+            anchors.fill: parent
+            minimumTouchPoints: 1
+            maximumTouchPoints: 1
+
+            property real startX: 0
+            property real threshold: 30
+
+            onPressed: (touch) => startX = touch.touchPoints[0].x
+
+            onReleased: (touch) => {
+                let endX = touch.touchPoints[0].x
+                let deltaX = endX - startX
+
+                if (Math.abs(deltaX) > threshold) {
+                    if (deltaX > 0 && collectionList.currentIndex > 0) {
+                        sfxNav.play()
+                        collectionList.decrementCurrentIndex()
+                    } else if (deltaX < 0 && collectionList.currentIndex < collectionList.count - 1) {
+                        sfxNav.play()
+                        collectionList.incrementCurrentIndex()
+                    }
+                }
             }
         }
     }
