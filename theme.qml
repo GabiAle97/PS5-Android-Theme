@@ -184,7 +184,10 @@ FocusScope {
                 } else if (dx > 0 && currentCollection < 0){
                     nextCollection = api.collections.count -1
                 }
+            } else {
+                mainView()
             }
+
         }
     }
 
