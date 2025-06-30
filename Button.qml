@@ -66,10 +66,6 @@ id: root
     }
 
     TapHandler {
-        onTapped: {
-            sfxAccept.play()
-            root.activated()
-        }
     }
 
     Keys.onPressed: {
