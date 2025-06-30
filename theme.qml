@@ -158,7 +158,23 @@ FocusScope {
 
     Keys.onPressed: {
     }
-    
+
+    MultiPointTouchArea {
+        anchors.fill: parent
+        onPressed: {
+            sfxAccept.play();
+            if (currentView === gameDetails) {
+                launchGame(currentGame);
+            } else if (currentView === gameGrid || currentView === exploreScreen) {
+                if (currentCollection < api.collections.count - 1) {
+                    nextCollection++;
+                } else {
+                    nextCollection = -1;
+                }
+                navigationMenu();
+            }
+        }
+    }
 
     // Background
     Item {
