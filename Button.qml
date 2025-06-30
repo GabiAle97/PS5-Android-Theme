@@ -66,6 +66,9 @@ id: root
     }
 
     MouseArea {
+        onClicked: {
+            sfxAccept.play()
+        }
     }
 
     Keys.onPressed: {
