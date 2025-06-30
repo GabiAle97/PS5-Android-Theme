@@ -66,11 +66,6 @@ id: root
     }
 
     TapHandler {
-        anchors.fill: parent
-        minimumTouchPoints: 1
-        maximumTouchPoints: 1
-        z: 100
-        enabled: true
 
         onTapped: {
             sfxAccept.play()
