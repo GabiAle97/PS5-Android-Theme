@@ -246,8 +246,8 @@ id: root
                 activated();
             }
         }
+
         TapHandler{
-            z: 1000
             onTapped: {
                 // Accept
                 if (api.keys.isAccept(event) && !event.isAutoRepeat) {
