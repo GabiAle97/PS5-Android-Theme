@@ -14,7 +14,7 @@ id: root
     
     // List specific input
     TapHandler{
-        onPressed: {
+        onTapped: {
             // Accept
             if (api.keys.isAccept(event) && !event.isAutoRepeat) {
                 event.accepted = true;
