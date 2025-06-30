@@ -10,7 +10,7 @@ Item {
     property string hlColor: "white"
 
     height: vpx(50)
-
+    enabled: true
     signal activated
 
     ItemOutline {
