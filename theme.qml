@@ -181,7 +181,7 @@ FocusScope {
                     nextCollection = -1
                 } else if (dx > 0 && currentCollection == 0) {
                     nextCollection = -1
-                } else if (dx > 0 && currentCollection < 0)
+                } else if (dx > 0 && currentCollection < 0){
                     nextCollection = api.collections.count -1
                 }
             }
