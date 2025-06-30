@@ -1,8 +1,9 @@
-import QtQuick 2.0
+import QtQuick 2.12
 import QtGraphicalEffects 1.0
+import QtQuick.Gestures 1.0
 
 Item {
-id: root
+    id: root
 
     property bool isSelected
     property string icon: ""
@@ -14,16 +15,14 @@ id: root
     signal activated
 
     ItemOutline {
-    id: outline 
-
+        id: outline
         anchors.fill: container
         radius: height/2
         show: isSelected
     }
 
     Rectangle {
-    id: container
-
+        id: container
         width: parent.width
         height: vpx(50)
         radius: height/2
@@ -32,24 +31,20 @@ id: root
     }
 
     Text {
-    id: buttonText
-
+        id: buttonText
         text: "Play"
         font.pixelSize: vpx(18)
         font.family: bodyFont.name
         font.bold: true
         color: isSelected ? "black" : hlColor
-        anchors {
-            fill: container
-        }
+        anchors.fill: container
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         visible: icon == ""
     }
 
     Image {
-    id: iconImage
-
+        id: iconImage
         source: icon
         sourceSize: Qt.size(parent.width, parent.height)
         anchors.fill: container
@@ -65,22 +60,10 @@ id: root
         visible: icon != ""
     }
 
-    // Mouse/touch functionality
-    MouseArea {
+    // Reemplazo MouseArea y Keys por TapHandler para gestos táctiles
+    TapHandler {
         anchors.fill: parent
-        hoverEnabled: true
-        onEntered: {  }
-        onExited: {  }
-        onClicked: {
-            activated();
-        }
-    }
-
-    // List specific input
-    Keys.onPressed: {
-        // Accept
-        if (api.keys.isAccept(event) && !event.isAutoRepeat) {
-            event.accepted = true;
+        onTapped: {
             activated();
         }
     }
