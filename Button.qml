@@ -65,6 +65,15 @@ id: root
         visible: icon != ""
     }
 
+    MultiPointTouchArea {
+        anchors.fill: parent
+
+        property real startX
+
+        onPressed: {
+            sfxAccept.play()
+        }
+    }
 
     Keys.onPressed: {
         if (api.keys.isAccept(event) && !event.isAutoRepeat) {
