@@ -59,12 +59,5 @@ Item {
         visible: icon != ""
     }
 
-    // Agregar MouseArea para manejar eventos táctiles/clics
-    MouseArea {
-        anchors.fill: parent
-        onClicked: {
-            sfxAccepted.play() // Reproducir el sonido al tocar/clic
-            root.activated()   // Emitir la señal activated si es necesario
-        }
-    }
+
 }
