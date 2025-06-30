@@ -13,20 +13,22 @@ id: root
     signal activated
     
     // List specific input
-    Keys.onPressed: {
-        // Accept
-        if (api.keys.isAccept(event) && !event.isAutoRepeat) {
-            event.accepted = true;
-            sfxAccept.play();
-            launchGame(gameData);
-            activated();
-        }
+    TapHandler{
+        onPressed: {
+            // Accept
+            if (api.keys.isAccept(event) && !event.isAutoRepeat) {
+                event.accepted = true;
+                sfxAccept.play();
+                launchGame(gameData);
+                activated();
+            }
 
-        // Favorite
-        if (api.keys.isFilters(event) && !event.isAutoRepeat) {
-            event.accepted = true;
-            sfxToggle.play();
-            gameData.favorite = !gameData.favorite
+            // Favorite
+            if (api.keys.isFilters(event) && !event.isAutoRepeat) {
+                event.accepted = true;
+                sfxToggle.play();
+                gameData.favorite = !gameData.favorite
+            }
         }
     }
 
