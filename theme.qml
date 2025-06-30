@@ -166,7 +166,6 @@ FocusScope {
 
         onPressed: {
             startX = touchPoints[0].x
-            sfxAccept.play()
         }
 
         onReleased: {
