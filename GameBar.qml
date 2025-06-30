@@ -66,8 +66,6 @@ FocusScope {
         minimumTouchPoints: 1
         maximumTouchPoints: 1
         enabled: active
-        layer.enabled: true
-        z: 10
 
         property real startX
 
@@ -248,16 +246,10 @@ FocusScope {
                 acceptedDevices: PointerDevice.TouchScreen
                 gesturePolicy: TapHandler.WithinBounds
                 grabPermissions: PointerHandler.CanTakeOverFromAnything
-                onTapped: {
-                    currentIndex = index
-                    sfxAccept.play()
-                    exitNav()
-                }
                 onDoubleTapped: {
                     currentIndex = index
                     sfxAccept.play()
-                    // Puedes lanzar una vista de detalles aquí, o marcar como favorito, etc.
-                    navigationMenu()
+                    exitNav()
                 }
             }
         }
