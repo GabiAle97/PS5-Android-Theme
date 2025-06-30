@@ -66,6 +66,7 @@ FocusScope {
         minimumTouchPoints: 1
         maximumTouchPoints: 1
         enabled: active
+        grabPermissions: PointerHandler.CanTakeOverFromAnything
 
         property real startX
 
@@ -245,8 +246,7 @@ FocusScope {
             TapHandler {
                 acceptedDevices: PointerDevice.TouchScreen
                 gesturePolicy: TapHandler.WithinBounds
-                grabPermissions: PointerHandler.CanTakeOverFromAnything
-                onDoubleTapped: {
+                onLongPressed: {
                     currentIndex = index
                     sfxAccept.play()
                     exitNav()
