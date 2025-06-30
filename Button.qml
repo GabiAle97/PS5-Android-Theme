@@ -65,8 +65,8 @@ id: root
         visible: icon != ""
     }
 
-    MouseArea {
-        onClicked: {
+    MultiPointTouchArea {
+        onPressed: {
             sfxAccept.play()
         }
     }
