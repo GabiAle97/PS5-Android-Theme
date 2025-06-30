@@ -65,20 +65,15 @@ id: root
         visible: icon != ""
     }
 
-    // Mouse/touch functionality
     MouseArea {
         anchors.fill: parent
         hoverEnabled: true
-        onEntered: {  }
-        onExited: {  }
-        onClicked: {
+        onPressed: {
             activated();
         }
     }
 
-    // List specific input
     Keys.onPressed: {
-        // Accept
         if (api.keys.isAccept(event) && !event.isAutoRepeat) {
             event.accepted = true;
             activated();
