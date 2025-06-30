@@ -250,16 +250,12 @@ FocusScope {
                 onTapped: {
                     currentIndex = index
                     sfxAccept.play()
+                    exitNav()
                 }
                 onLongPressed: {
                     currentIndex = index
                     sfxAccept.play()
-                    if (root.longPressToggle) {
-                        exitNav()
-                    } else {
-                        gameNav()
-                    }
-                    root.longPressToggle = !root.longPressToggle // Alterna el estado
+                    gameNav()
                 }
             }
         }
