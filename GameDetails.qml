@@ -105,12 +105,6 @@ id: root
                     width: vpx(225)
                     isSelected: featuredRecentGame.selected && ListView.isCurrentItem
 
-                    TapHandler{
-                        onTapped:{
-                            sfxAccept.play();
-                        }
-                    }
-
                     onActivated: { 
                         sfxAccept.play();
                         launchGame(gameData); 
