@@ -59,10 +59,12 @@ Item {
         visible: icon != ""
     }
 
-    Keys.onPressed: {
-        if (api.keys.isAccept(event) && !event.isAutoRepeat) {
-            event.accepted = true;
-            activated();
+    TapHandler{
+        onTapped: {
+            if (api.keys.isAccept(event) && !event.isAutoRepeat) {
+                event.accepted = true;
+                activated();
+            }
         }
     }
 }
