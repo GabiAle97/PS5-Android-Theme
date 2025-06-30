@@ -249,7 +249,6 @@ FocusScope {
                 onLongPressed: {
                     currentIndex = index
                     sfxAccept.play()
-                    exitNav()
                 }
             }
         }
