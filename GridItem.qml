@@ -12,26 +12,6 @@ id: root
 
     signal activated
     
-    TapHandler {
-        acceptedDevices: PointerDevice.TouchScreen
-        gesturePolicy: TapHandler.WithinBounds
-        onTapped: {
-            // Accept
-            if (api.keys.isAccept(event) && !event.isAutoRepeat) {
-                event.accepted = true;
-                sfxAccept.play();
-                launchGame(gameData);
-                activated();
-            }
-
-            // Favorite
-            if (api.keys.isFilters(event) && !event.isAutoRepeat) {
-                event.accepted = true;
-                sfxToggle.play();
-                gameData.favorite = !gameData.favorite
-            }
-        }
-    }
     // List specific input
     Keys.onPressed: {
         // Accept
@@ -273,12 +253,11 @@ id: root
         }
 
         // Mouse/touch functionality
-        MouseArea {
+        
+        TapHandler {
             anchors.fill: parent
             hoverEnabled: true
-            onEntered: { highlighted = true }
-            onExited: { highlighted = false }
-            onClicked: {
+            onTapped: {
                 launchGame(gameData);
                 activated();
             }
