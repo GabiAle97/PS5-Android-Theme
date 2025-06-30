@@ -8,7 +8,7 @@ import "qrc:/qmlutils" as PegasusUtils
 
 FocusScope {
 id: root
-    
+
     // Pull in our custom lists and define
     ListAllGames    { id: listNone;         max: 0 }
     ListAllGames    { id: listAllGames;     max: 15 }
@@ -16,7 +16,6 @@ id: root
     ListTopGames    { id: listTopGames;     max: 15 }
     ListLastPlayed  { id: listLastPlayed;   max: 15 }
 
-    //property var gameData: (currentCollection != -1) ? api.collections.get(currentCollection).games.get(Math.floor(Math.random() * api.collections.get(currentCollection).games.count)) : api.allGames.get(Math.floor(Math.random() * api.allGames.count))
     property var gameData: listLastPlayed.games.get(currentGameIndex)
     property alias menu: mainList
 
@@ -56,7 +55,6 @@ id: root
             width: parent.width
             height: vpx(500)
             property bool selected: ListView.isCurrentItem && root.focus
-            
 
             Image {
             id: favelogo
@@ -96,7 +94,7 @@ id: root
                     left: parent.left;
                 }
                 color: theme.text
-            }//*/
+            }
 
             ObjectModel {
             id: gameNavModel
@@ -126,7 +124,7 @@ id: root
                     hlColor: gameData ? gameData.favorite ? theme.highlight : "white" : "white"
                 }
             }
-            
+
             ListView {
             id: gameNav
 
@@ -141,14 +139,22 @@ id: root
                 spacing: vpx(10)
                 model: gameNavModel
                 keyNavigationWraps: true
-                
-                Keys.onLeftPressed: {
-                    sfxNav.play();
-                    decrementCurrentIndex();
-                }
-                Keys.onRightPressed: {
-                    sfxNav.play();
-                    incrementCurrentIndex();
+
+                MultiPointTouchArea {
+                    anchors.fill: parent
+
+                    onReleased: {
+                        const dx = touchPoints[0].startX - touchPoints[0].x;
+                        if (Math.abs(dx) > 40) {
+                            if (dx > 0) {
+                                sfxNav.play();
+                                gameNav.incrementCurrentIndex();
+                            } else {
+                                sfxNav.play();
+                                gameNav.decrementCurrentIndex();
+                            }
+                        }
+                    }
                 }
             }
 
@@ -158,7 +164,6 @@ id: root
                 width: vpx(350)
                 height: vpx(300)
                 anchors {
-                    //top: parent.top
                     bottom: gameNav.bottom
                     right: parent.right
                 }
@@ -192,10 +197,9 @@ id: root
                 height: vpx(50)
             }
 
-            PegasusUtils.AutoScroll
-            {
+            PegasusUtils.AutoScroll {
             id: gameDescription
-            
+
                 anchors {
                     top: detailsTitle.bottom;
                     left: parent.left; 
@@ -229,41 +233,11 @@ id: root
 
             focus: selected
         }
-
-        /*HorizontalList {
-        id: favouriteList
-
-            property bool selected: ListView.isCurrentItem && root.focus
-            property var currentList
-            collectionData: listFavorites.games
-
-            height: vpx(300)
-
-            title: "Favorites"
-
-            focus: selected
-            anchors { left: parent.left; right: parent.right }
-        }*/
-
-        /*HorizontalList {
-        id: topList
-
-            property bool selected: ListView.isCurrentItem && root.focus
-            property var currentList
-            collectionData: listTopGames.games
-
-            height: vpx(300)
-
-            title: "Recommended"
-
-            focus: selected
-            anchors { left: parent.left; right: parent.right }
-        }*/
     }
 
     ListView {
     id: mainList
-        
+
         width: parent.width;
         height: parent.height;
 
@@ -274,10 +248,6 @@ id: root
 
         model: mainModel
         focus: true
-        onFocusChanged: {
-            if (!focus)
-                positionViewAtIndex = 0;
-        }
 
         preferredHighlightBegin: vpx(50)
         preferredHighlightEnd: parent.height - vpx(60)
@@ -285,18 +255,26 @@ id: root
         snapMode: ListView.SnapOneItem 
         highlightMoveDuration: 100
 
-        Keys.onUpPressed: { 
-            if (currentIndex == 0) {
-                sfxBack.play();
-                exit();
-            } else {
-                sfxNav.play(); 
-                decrementCurrentIndex();
+        MultiPointTouchArea {
+            anchors.fill: parent
+
+            onReleased: {
+                const dy = touchPoints[0].startY - touchPoints[0].y;
+                if (Math.abs(dy) > 50) {
+                    if (dy > 0) {
+                        sfxNav.play(); 
+                        mainList.incrementCurrentIndex();
+                    } else {
+                        if (mainList.currentIndex === 0) {
+                            sfxBack.play();
+                            root.exit();
+                        } else {
+                            sfxNav.play(); 
+                            mainList.decrementCurrentIndex();
+                        }
+                    }
+                }
             }
-        }
-        Keys.onDownPressed: { 
-            sfxNav.play(); 
-            incrementCurrentIndex() 
         }
     }
 }
