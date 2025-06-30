@@ -20,6 +20,7 @@ FocusScope {
     property int nextCollection: api.memory.has('Last Collection') ? api.memory.get('Last Collection') : -1
     property var currentGame
     property string searchtext
+    enabled: true
 
     onNextCollectionChanged: { changeCollection() }
     
