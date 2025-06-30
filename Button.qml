@@ -30,9 +30,11 @@ Item {
         TapHandler {
             acceptedDevices: PointerDevice.TouchScreen
             gesturePolicy: TapHandler.WithinBounds
-            onLongPressed: {
-                event.accepted = true
-                navigationMenu()
+            onTapped: {
+                isSelected = false
+            }
+            onDoubleTapped: {
+                isSelected = true
             }
         }
     }
