@@ -58,10 +58,13 @@ Item {
         color: isSelected ? "black" : hlColor
         visible: icon != ""
     }
-    TapHandler.onTapped: {
-        if (api.keys.isAccept(event) && !event.isAutoRepeat) {
-            event.accepted = true;
-            activated();
+
+    TapHandler{
+        onTapped: {
+            if (api.keys.isAccept(event) && !event.isAutoRepeat) {
+                event.accepted = true;
+                activated();
+            }
         }
     }
     Keys.onPressed: {
