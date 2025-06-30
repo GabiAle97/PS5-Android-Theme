@@ -510,4 +510,22 @@ FocusScope {
         source: "assets/sfx/toggle.wav"
     }
 
+     Audio {
+        id: sfxBackground
+        source: "assets/sfx/music.mp3"
+        loops: Audio.Infinite
+    }
+
+    Audio {
+        id: playMusic
+        source: currentGame.assets.music
+        loops: Audio.Infinite
+        volume: 0
+    }
+
+    NumberAnimation{ id:audiobackgroundfadein; target: sfxBackground; property: "volume"; from:0; to: 1; duration:1000 }
+    NumberAnimation{ id:audiobackgroundfadeout; target: sfxBackground; property: "volume"; from:1; to: 0; duration:1000 }
+    NumberAnimation{ id:audiogamefadein; target: playMusic; property: "volume"; from:0; to: 1; duration:1000 }
+    NumberAnimation{ id:audiogamefadeout; target: playMusic; property: "volume"; from:1; to: 0; duration:1000 }
+
 }
