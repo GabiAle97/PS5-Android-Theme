@@ -249,12 +249,11 @@ FocusScope {
                 onTapped: {
                     currentIndex = index
                     sfxAccept.play()
-                    currentView.focus == true ? navigationMenu() : exitNav()
                 }
                 onLongPressed: {
                     currentIndex = index
                     sfxAccept.play()
-                    exitNav()
+                    currentView.focus == true ? navigationMenu() : exitNav()
                 }
             }
         }
