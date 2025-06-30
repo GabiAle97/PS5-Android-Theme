@@ -59,12 +59,11 @@ Item {
         visible: icon != ""
     }
 
-    TapHandler {
-        acceptedDevices: PointerDevice.TouchScreen
-        gesturePolicy: TapHandler.WithinBounds
-        onLongPressed: {
-            event.accepted = true
-            activated()
+    MouseArea {
+        anchors.fill: parent
+        onClicked: {
+            sfxAccepted.play() // Reproducir el sonido al tocar/clic
+            root.activated()   // Emitir la señal activated si es necesario
         }
     }
 }
