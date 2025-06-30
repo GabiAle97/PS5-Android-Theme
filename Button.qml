@@ -67,8 +67,10 @@ id: root
 
     MultiPointTouchArea {
         anchors.fill: parent
-
-        property real startX
+        minimumTouchPoints: 1
+        maximumTouchPoints: 1
+        preventStealing: true
+        enabled: true
 
         onPressed: {
             sfxAccept.play()
