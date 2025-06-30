@@ -253,12 +253,12 @@ id: root
         }
 
         // Mouse/touch functionality
-        
-        TapHandler {
-            acceptedDevices: PointerDevice.TouchScreen
-            gesturePolicy: TapHandler.WithinBounds
-            grabPermissions: PointerHandler.CanTakeOverFromAnything
-            onTapped: {
+        MouseArea {
+            anchors.fill: parent
+            hoverEnabled: true
+            onEntered: { highlighted = true }
+            onExited: { highlighted = false }
+            onClicked: {
                 launchGame(gameData);
                 activated();
             }
