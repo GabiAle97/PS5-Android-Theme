@@ -165,7 +165,6 @@ FocusScope {
         property real startY
 
         onPressed: {
-            sfxAccept.play();
             startY = touchPoints[0].y
         }
         
@@ -173,16 +172,44 @@ FocusScope {
             var endY = touchPoints[0].y
             var dy = endY - startY
             if (Math.abs(dY) > 40) {
+                sfxAccept.play();
                 if (dy < 0 && gameNav.currentIndex < gameNav.count - 1) {
+                    sfxAccept.play();
+                    sfxAccept.play();
                     if (currentCollection < api.collections.count - 1) {
+                        sfxAccept.play();
+                        sfxAccept.play();
+                        sfxAccept.play();
                         nextCollection++;
                     } else {
+                        sfxAccept.play();
+                        sfxAccept.play();
+                        sfxAccept.play();
+                        sfxAccept.play();
                         nextCollection = -1;
                     }
                 } else if (dy > 0 && gameNav.currentIndex > 0) {
+                    sfxAccept.play();
+                    sfxAccept.play();
+                    sfxAccept.play();
+                    sfxAccept.play();
+                    sfxAccept.play();
                     if (currentCollection < api.collections.count - 1) {
+                        sfxAccept.play();
+                        sfxAccept.play();
+                        sfxAccept.play();
+                        sfxAccept.play();
+                        sfxAccept.play();
+                        sfxAccept.play();
                         nextCollection--;
                     } else {
+                        sfxAccept.play();
+                        sfxAccept.play();
+                        sfxAccept.play();
+                        sfxAccept.play();
+                        sfxAccept.play();
+                        sfxAccept.play();
+                        sfxAccept.play();
                         nextCollection = -1;
                     }
                 }
