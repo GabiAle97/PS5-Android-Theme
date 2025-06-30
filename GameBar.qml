@@ -66,6 +66,8 @@ FocusScope {
         minimumTouchPoints: 1
         maximumTouchPoints: 1
         enabled: active
+        layer.enabled: true
+        z: 10
 
         property real startX
 
