@@ -2,7 +2,7 @@ import QtQuick 2.0
 import QtGraphicalEffects 1.0
 
 Item {
-id: root
+    id: root
 
     property bool isSelected
     property string icon: ""
@@ -14,42 +14,36 @@ id: root
     signal activated
 
     ItemOutline {
-    id: outline 
-
+        id: outline 
         anchors.fill: container
-        radius: height/2
+        radius: height / 2
         show: isSelected
     }
 
     Rectangle {
-    id: container
-
+        id: container
         width: parent.width
         height: vpx(50)
-        radius: height/2
+        radius: height / 2
         opacity: isSelected ? 1 : 0.05
         color: isSelected ? hlColor : "white"
     }
 
     Text {
-    id: buttonText
-
+        id: buttonText
         text: "Play"
         font.pixelSize: vpx(18)
         font.family: bodyFont.name
         font.bold: true
         color: isSelected ? "black" : hlColor
-        anchors {
-            fill: container
-        }
+        anchors.fill: container
         horizontalAlignment: Text.AlignHCenter
         verticalAlignment: Text.AlignVCenter
         visible: icon == ""
     }
 
     Image {
-    id: iconImage
-
+        id: iconImage
         source: icon
         sourceSize: Qt.size(parent.width, parent.height)
         anchors.fill: container
@@ -66,10 +60,10 @@ id: root
     }
 
     MouseArea {
+        id: touchArea
         anchors.fill: parent
-        hoverEnabled: true
-        onPressed: {
-            activated();
+        onClicked: {
+            activated()
         }
     }
 
