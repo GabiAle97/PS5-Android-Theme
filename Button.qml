@@ -1,6 +1,5 @@
 import QtQuick 2.12
 import QtGraphicalEffects 1.0
-import QtQuick.Gestures 1.0
 
 Item {
     id: root
