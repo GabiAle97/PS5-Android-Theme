@@ -159,35 +159,7 @@ FocusScope {
     Keys.onPressed: {
     }
 
-    MultiPointTouchArea {
-        anchors.fill: parent
-        property real startX
 
-        onPressed: {
-            startX = touchPoints[0].x
-        }
-
-        onReleased: {
-            var endX = touchPoints[0].x
-            var dx = endX - startX
-            if (Math.abs(dx) > 40) {
-                if (dx < 0 && currentCollection < api.collections.count - 1) {
-                    nextCollection++
-                } else if (dx > 0 && currentCollection > 0) {
-                    nextCollection--
-                } else if (dx < 0 && currentCollection > api.collections.count - 2){
-                    nextCollection = -1
-                } else if (dx > 0 && currentCollection == 0) {
-                    nextCollection = -1
-                } else if (dx > 0 && currentCollection < 0){
-                    nextCollection = api.collections.count -1
-                }
-            } else {
-                mainView()
-            }
-
-        }
-    }
 
     // Background
     Item {
