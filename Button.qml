@@ -31,7 +31,7 @@ Item {
 
     Text {
         id: buttonText
-        text: "Play"
+        text: "JUGAR"
         font.pixelSize: vpx(18)
         font.family: bodyFont.name
         font.bold: true
@@ -62,7 +62,7 @@ Item {
     TapHandler {
         acceptedDevices: PointerDevice.TouchScreen
         gesturePolicy: TapHandler.WithinBounds
-        onTapped: {
+        onLongPressed: {
             event.accepted = true
             activated()
         }
