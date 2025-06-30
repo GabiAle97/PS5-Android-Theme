@@ -247,8 +247,8 @@ id: root
             }
         }
 
-        TapHandler{
-            onTapped: {
+        MultiPointTouchArea{
+            onPressed: {
                 // Accept
                 if (api.keys.isAccept(event) && !event.isAutoRepeat) {
                     event.accepted = true;
