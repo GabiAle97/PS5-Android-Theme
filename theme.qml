@@ -156,34 +156,41 @@ FocusScope {
         api.memory.unset('Last Collection');
     }
 
-    // List specific input
     Keys.onPressed: {
-        // Open collections menu
-        if (api.keys.isFilters(event) && !event.isAutoRepeat) {
-            event.accepted = true;
-        }
+    }
 
-        // Cycle collection forward
-        if (api.keys.isNextPage(event) && !event.isAutoRepeat) {
-            event.accepted = true;
-            sfxToggle.play();
-            navigationMenu();
-            if (currentCollection < api.collections.count-1) {
-                nextCollection++;
-            } else {
-                nextCollection = -1;
+    MultiPointTouchArea {
+        anchors.fill: parent
+        onTapped: {
+            sfxAccept.play();
+            if (currentView === gameDetails) {
+                launchGame(currentGame);
+            } else if (currentView === gameGrid || currentView === exploreScreen) {
+                if (currentCollection < api.collections.count - 1) {
+                    nextCollection++;
+                } else {
+                    nextCollection = -1;
+                }
+                navigationMenu();
             }
         }
-
-        // Cycle collection back
-        if (api.keys.isPrevPage(event) && !event.isAutoRepeat) {
-            event.accepted = true;
-            sfxToggle.play();
-            navigationMenu();
-            if (currentCollection == -1) {
-                nextCollection = api.collections.count-1;
-            } else{ 
-                nextCollection--;
+        onSwipe: {
+            if (swipe.direction === Qt.Left) {
+                sfxToggle.play();
+                if (currentCollection < api.collections.count - 1) {
+                    nextCollection++;
+                } else {
+                    nextCollection = -1;
+                }
+                navigationMenu();
+            } else if (swipe.direction === Qt.Right) {
+                sfxToggle.play();
+                if (currentCollection == -1) {
+                    nextCollection = api.collections.count - 1;
+                } else {
+                    nextCollection--;
+                }
+                navigationMenu();
             }
         }
     }
@@ -223,16 +230,12 @@ FocusScope {
 
         function swapImage(newSource) {
             if (firstBG) {
-                // Go to second image
                 if (newSource)
                     bgImage2 = newSource
-
                 firstBG = false
-                } else {
-                // Go to first image
+            } else {
                 if (newSource)
                     bgImage1 = newSource
-
                 firstBG = true
             }
             background.state = background.state == "fadeInRect2" ? "fadeOutRect2" : "fadeInRect2"
@@ -281,7 +284,6 @@ FocusScope {
         opacity: gameBar.active ? 1 : 0
         Behavior on opacity { NumberAnimation { duration: 50 } }
 
-        // Build the collections list but with "All Games" as starting element
         ListModel {
         id: collectionsModel
 
@@ -302,7 +304,6 @@ FocusScope {
             }
         }
         
-        // Collections
         ListView {
         id: collectionNav
 
@@ -355,7 +356,6 @@ FocusScope {
             maskSource: navMask
         }
 
-        // Navigation
         Image {
         id: searchButton
 
@@ -370,7 +370,7 @@ FocusScope {
                 verticalCenter: parent.verticalCenter
                 right: settingsButton.left; rightMargin: vpx(50)
             }
-            visible: false // Disabling until ready to implement
+            visible: false
         }
 
         Image {
@@ -387,7 +387,7 @@ FocusScope {
                 verticalCenter: parent.verticalCenter
                 right: sysTime.left; rightMargin: vpx(50)
             }
-            visible: false // Disabling until ready to implement
+            visible: false
         }
         
 
@@ -400,7 +400,7 @@ FocusScope {
 
             Timer {
                 id: textTimer
-                interval: 60000 // Run the timer every minute
+                interval: 60000
                 repeat: true
                 running: true
                 triggeredOnStart: true
@@ -419,7 +419,6 @@ FocusScope {
         }
     }
 
-    // Game bar
     GameBar {
     id: gameBar
 
@@ -436,7 +435,6 @@ FocusScope {
         }
         focus: true
         active: focus
-        //list.model: listRecent.games
         onExitNav: mainView();
         
         Component.onCompleted: currentIndex = 1;
@@ -444,7 +442,6 @@ FocusScope {
     }
 
 
-    // Game details
     GameDetails {
     id: gameDetails
 
@@ -522,9 +519,6 @@ FocusScope {
         visible: root.state == "explore"
     }
 
-    ///////////////////
-    // SOUND EFFECTS //
-    ///////////////////
     SoundEffect {
         id: sfxNav
         source: "assets/sfx/navigation.wav"
