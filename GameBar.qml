@@ -254,7 +254,12 @@ FocusScope {
                 onLongPressed: {
                     currentIndex = index
                     sfxAccept.play()
-                    exitNav()
+                    if (root.longPressToggle) {
+                        exitNav()
+                    } else {
+                        gameNav()
+                    }
+                    root.longPressToggle = !root.longPressToggle // Alterna el estado
                 }
             }
         }
