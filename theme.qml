@@ -174,10 +174,12 @@ FocusScope {
             if (Math.abs(dx) > 40) {
                 if (dx < 0 && currentCollection < api.collections.count - 1) {
                     nextCollection++
-                    sfxNav.play()
+                    sfxAccept.play()
                 } else if (dx > 0 && currentCollection > 0) {
                     nextCollection--
-                    sfxNav.play()
+                    sfxAccept.play()
+                } else {
+                    nextCollection = -1
                 }
             }
         }
