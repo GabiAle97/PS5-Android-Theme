@@ -249,7 +249,7 @@ id: root
 
         MultiPointTouchArea{
             onPressed: {
-                // Accept
+                console.log("pressed")
                 if (api.keys.isAccept(event) && !event.isAutoRepeat) {
                     event.accepted = true;
                     sfxAccept.play();
