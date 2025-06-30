@@ -254,6 +254,7 @@ FocusScope {
                     currentIndex = index
                     sfxAccept.play()
                     active == true ? exitNav() : gameNav()
+                    active = false
                 }
             }
         }
