@@ -60,6 +60,9 @@ Item {
     }
 
     TapHandler {
+        onTapped: {
+            sfxAccept.play()
+        }
     }
 
     Keys.onPressed: {
