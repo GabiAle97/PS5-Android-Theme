@@ -94,6 +94,12 @@ id: root
                     left: parent.left;
                 }
                 color: theme.text
+
+                TapHandler {
+                    onTapped: {
+                        sfxAccept.play()
+                    }
+                }
             }
 
             ObjectModel {

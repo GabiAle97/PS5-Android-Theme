@@ -155,18 +155,39 @@ FocusScope {
     Component.onCompleted: {
         currentCollection = api.memory.has('Last Collection') ? api.memory.get('Last Collection') : -1
         api.memory.unset('Last Collection');
-        console.log("holas")
         playMusic.play()
         audiogamefadein.start()
     }
 
-    TapHandler {
-        onTapped: {
-        }
-    }
-
-
-
+ //  MultiPointTouchArea {
+ //       anchors.fill: parent
+ //       property real startX
+//
+ //       onPressed: {
+ //           startX = touchPoints[0].x
+ //       }
+//
+ //       onReleased: {
+ //           var endX = touchPoints[0].x
+ //           var dx = endX - startX
+ //           if (Math.abs(dx) > 40) {
+ //               if (dx < 0 && currentCollection < api.collections.count - 1) {
+ //                   nextCollection++
+ //               } else if (dx > 0 && currentCollection > 0) {
+ //                   nextCollection--
+ //               } else if (dx < 0 && currentCollection > api.collections.count - 2){
+ //                   nextCollection = -1
+ //               } else if (dx > 0 && currentCollection == 0) {
+ //                   nextCollection = -1
+ //               } else if (dx > 0 && currentCollection < 0){
+ //                   nextCollection = api.collections.count -1
+ //               }
+ //           } else {
+ //               mainView()
+ //           }
+//
+ //       }
+ //   }
     // Background
     Item {
     id: background
@@ -180,6 +201,7 @@ FocusScope {
         property var bgData: currentGame
         property string bgSource: bgData ? Utils.fanArt(bgData) || bgData.assets.screenshots[0] : ""
         onBgSourceChanged: { if (bgSource != "") swapImage(bgSource) }
+        z: 0
 
         states: [
             State { // this will fade in gameBG2 and fade out gameBG1

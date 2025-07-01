@@ -196,7 +196,16 @@ id: root
                 asynchronous: true
                 smooth: true
                 z: 10
+                TapHandler {
+                    acceptedDevices: PointerDevice.TouchScreen
+                    gesturePolicy: TapHandler.WithinBounds
+                    grabPermissions: PointerHandler.CanTakeOverFromAnything
+                    onTapped: {
+                        sfxAccept.play()
+                    }
+                }
             }
+
         }
         
         Rectangle {
@@ -235,17 +244,6 @@ id: root
             visible: isFave
         }
 
-        // Mouse/touch functionality
-        MouseArea {
-            anchors.fill: parent
-            hoverEnabled: true
-            onEntered: { highlighted = true }
-            onExited: { highlighted = false }
-            onClicked: {
-                launchGame(gameData);
-                activated();
-            }
-        }
 
 //        MultiPointTouchArea{
 //            onPressed: {

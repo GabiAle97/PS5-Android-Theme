@@ -58,13 +58,12 @@ Item {
         color: isSelected ? "black" : hlColor
         visible: icon != ""
     }
-
-    TapHandler{
+    TapHandler {
+        acceptedDevices: PointerDevice.TouchScreen
+        gesturePolicy: TapHandler.WithinBounds
+        grabPermissions: PointerHandler.CanTakeOverFromAnything
         onTapped: {
-            if (api.keys.isAccept(event) && !event.isAutoRepeat) {
-                event.accepted = true;
-                activated();
-            }
+            sfxAccept.play()
         }
     }
 }
