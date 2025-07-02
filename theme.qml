@@ -447,26 +447,6 @@ FocusScope {
         width: root.width
         gameData: currentGame
         onExit: { gameBar.focus = true; } 
-        visible: false
-    }
-
-    Rectangle {
-    id: detailsMask
-
-        anchors.fill: gameDetails
-        gradient: Gradient {
-            GradientStop { position: 0.0; color: "transparent" }
-            GradientStop { position: 0.1; color: "white" }
-        }
-        visible: false
-    }
-
-    OpacityMask {
-    id: detailsOpacityMask
-    
-        anchors.fill: gameDetails
-        source: gameDetails
-        maskSource: detailsMask
         visible: root.state == "gamedetails"
     }
 

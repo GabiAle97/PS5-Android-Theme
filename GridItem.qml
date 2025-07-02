@@ -195,15 +195,6 @@ id: root
                 fillMode: Image.PreserveAspectFit
                 asynchronous: true
                 smooth: true
-                z: 10
-                TapHandler {
-                    acceptedDevices: PointerDevice.TouchScreen
-                    gesturePolicy: TapHandler.WithinBounds
-                    grabPermissions: PointerHandler.CanTakeOverFromAnything
-                    onTapped: {
-                        sfxAccept.play()
-                    }
-                }
             }
 
         }

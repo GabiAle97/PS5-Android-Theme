@@ -21,6 +21,14 @@ id: root
 
     signal exit
 
+    TapHandler {
+        acceptedDevices: PointerDevice.TouchScreen | PointerDevice.Mouse
+        gesturePolicy: TapHandler.ReleaseWithinBounds
+        onTapped: {
+            console.log("?? TAP EN ROOT GameDetails.qml")
+        }
+    }
+
     onGameDataChanged: {
         mainList.opacity = 0;
         introAnim.restart();
@@ -94,12 +102,6 @@ id: root
                     left: parent.left;
                 }
                 color: theme.text
-
-                TapHandler {
-                    onTapped: {
-                        sfxAccept.play()
-                    }
-                }
             }
 
             ObjectModel {
@@ -109,11 +111,26 @@ id: root
                 id: playButton  
 
                     width: vpx(225)
+                    z: 1000
                     isSelected: featuredRecentGame.selected && ListView.isCurrentItem
 
                     onActivated: { 
                         sfxAccept.play();
                         launchGame(gameData); 
+                    }
+
+                    Rectangle {
+                        anchors.fill: parent
+                        color: "#8000ff00" // verde semitransparente
+                    }
+
+                    TapHandler {
+                        acceptedDevices: PointerDevice.TouchScreen | PointerDevice.Mouse
+                        gesturePolicy: TapHandler.ReleaseWithinBounds
+                        onTapped: {
+                            console.log("TAPPED PLAY BUTTON")
+                            sfxAccept.play()
+                        }
                     }
                 }
 
