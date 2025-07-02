@@ -21,6 +21,16 @@ FocusScope {
     property var currentGame
     property string searchtext
     enabled: true
+    signal setViewTap(var tappedGame, int idx)
+
+    onSetViewTap: {
+        console.log(tappedGame)
+        currentGame = tappedGame
+        nextView = gameDetails;
+        nextState = "gamedetails";
+        gameDetails.menu.currentIndex = idx
+        gameBar.currentIndex = idx
+    }
 
     onNextCollectionChanged: { changeCollection() }
     

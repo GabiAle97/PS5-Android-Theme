@@ -34,7 +34,7 @@ id: root
 
     ListView {
         id: collectionList
-
+        
         focus: root.focus
         anchors {
             top: collectiontitle.bottom; topMargin: vpx(10)
@@ -72,13 +72,11 @@ id: root
             TapHandler {
                 onTapped: {
                     if (selected) {
-                        sfxBack.play();
-                        navigationMenu();
+                        setViewTap(gameData, index+1)
                     } else {
-                        collectionList.currentIndex = index
                         collectionList.forceActiveFocus()
+                        collectionList.currentIndex = index
                     }
-                    
                 }
                 onLongPressed: {
                     sfxToggle.play();
@@ -86,6 +84,7 @@ id: root
                 }
             }
         }
+
     }
 
     GridItem {
@@ -94,5 +93,4 @@ id: root
         radius: vpx(2)
         anchors { top: collectiontitle.bottom; topMargin: vpx(10) }
     }
-
 }
