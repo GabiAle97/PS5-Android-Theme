@@ -437,64 +437,48 @@ FocusScope {
 
 
     Item {
-    id: gameDetailsWrapper
-    clip: true
-    anchors {
-        top: gameBar.bottom
-        bottom: parent.bottom
-        left: parent.left
-        right: parent.right
-    }
-    width: root.width
-    visible: root.state == "gamedetails"
+        id: gameDetailsWrapper
+        clip: true
+        anchors {
+            top: gameBar.bottom
+            bottom: parent.bottom
+            left: parent.left
+            right: parent.right
+        }
+        width: root.width
+        visible: root.state == "gamedetails"
 
-    // Contenido original
-    GameDetails {
-        id: gameDetails
-        anchors.fill: parent
-        gameData: currentGame
-        onExit: { gameBar.focus = true; }
-    }
+        // Contenido original
+        GameDetails {
+            id: gameDetails
+            anchors.fill: parent
+            gameData: currentGame
+            onExit: { gameBar.focus = true; }
+        }
 
-    ShaderEffectSource {
-        id: sourceItem
-        sourceItem: gameDetails
-        anchors.fill: parent
-        hideSource: true
-        live: true
-    }
+        ShaderEffectSource {
+            id: sourceItem
+            sourceItem: gameDetails
+            anchors.fill: parent
+            hideSource: true
+            live: true
+        }
 
-    ShaderEffect {
-        anchors.fill: parent
-        property variant source: sourceItem
-        fragmentShader: "
-            uniform sampler2D source;
-            varying vec2 qt_TexCoord0;
-            void main() {
-                vec4 color = texture2D(source, qt_TexCoord0);
-                float alphaTop = smoothstep(0.0, 0.1, qt_TexCoord0.y);
-                float alphaBottom = smoothstep(1.0, 0.9, qt_TexCoord0.y);
-                float fade = min(alphaTop, alphaBottom);
-                gl_FragColor = vec4(color.rgb, color.a * fade);
-            }
-        "
-    }
-}
-
-    ShaderEffect {
-        anchors.fill: gameDetails
-        property variant source: gameDetails
-        fragmentShader: "
-            uniform sampler2D source;
-            varying vec2 qt_TexCoord0;
-            void main() {
-                vec4 color = texture2D(source, qt_TexCoord0);
-                float alphaTop = smoothstep(0.1, 0.0, qt_TexCoord0.y);
-                float alphaBottom = smoothstep(1.0, 0.9, qt_TexCoord0.y);
-                float fade = min(alphaTop, alphaBottom);
-                gl_FragColor = vec4(color.rgb, color.a * fade);
-            }
-        "
+        ShaderEffect {
+            anchors.fill: parent
+            property variant source: sourceItem
+            fragmentShader: "
+                uniform sampler2D source;
+                varying vec2 qt_TexCoord0;
+                void main() {
+                    vec4 color = texture2D(source, qt_TexCoord0);
+                    float alphaTop = smoothstep(0.0, 0.1, qt_TexCoord0.y);
+                    float alphaBottom = smoothstep(1.0, 0.9, qt_TexCoord0.y);
+                    float fade = min(alphaTop, alphaBottom);
+                    gl_FragColor = vec4(color.rgb, color.a * fade);
+                }
+            "
+        }
     }
 
     GameGrid {
@@ -507,7 +491,7 @@ FocusScope {
         width: root.width
         currentState: root.state
         onExit: { gameBar.focus = true; } 
-        visible: false
+        visible: root.state == "allgames" || root.state == "topgames"
     }
 
     ExploreGames {
@@ -519,7 +503,7 @@ FocusScope {
         }
         width: root.width
         onExit: { gameBar.focus = true; } 
-        visible: false
+        visible: root.state == "explore"
     }
 
     SoundEffect {
