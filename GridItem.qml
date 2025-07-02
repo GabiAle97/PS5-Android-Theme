@@ -16,6 +16,12 @@ id: root
     width: vpx(250)
     height: vpx(400)
 
+    TapHandler {
+        onTapped:{
+            console.log("gridito")
+        }
+    }
+
     function steamAppID (gameData) {
         var str = gameData.assets.boxFront.split("header");
         return str[0];

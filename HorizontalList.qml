@@ -69,50 +69,23 @@ id: root
             selected: ListView.isCurrentItem && collectionList.focus
             gameData: modelData
             radius: vpx(2)
-
             TapHandler {
-                onTapped: {                
-                    if (api.keys.isCancel(event) && !event.isAutoRepeat) {
-                        event.accepted = true;
+                onTapped: {
+                    if (selected) {
                         sfxBack.play();
                         navigationMenu();
+                    } else {
+                        collectionList.currentIndex = index
+                        collectionList.forceActiveFocus()
                     }
-
-                    if (api.keys.isDetails(event) && !event.isAutoRepeat) {
-                        event.accepted = true;
-                        sfxToggle.play();
-                        modelData.favorite = !modelData.favorite;
-                    }
+                    
+                }
+                onLongPressed: {
+                    sfxToggle.play();
+                    modelData.favorite = !modelData.favorite;
                 }
             }
         }
-
-        // Reemplazamos las teclas por gestos
-//        MultiPointTouchArea {
-//            anchors.fill: parent
-//            minimumTouchPoints: 1
-//            maximumTouchPoints: 1
-//
-//            property real startX: 0
-//            property real threshold: 30
-//
-//            onPressed: (touch) => startX = touch.touchPoints[0].x
-//
-//            onReleased: (touch) => {
-//                let endX = touch.touchPoints[0].x
-//                let deltaX = endX - startX
-//
-//                if (Math.abs(deltaX) > threshold) {
-//                    if (deltaX > 0 && collectionList.currentIndex > 0) {
-//                        sfxNav.play()
-//                        collectionList.decrementCurrentIndex()
-//                    } else if (deltaX < 0 && collectionList.currentIndex < collectionList.count - 1) {
-//                        sfxNav.play()
-//                        collectionList.incrementCurrentIndex()
-//                    }
-//                }
-//            }
-//        }
     }
 
     GridItem {

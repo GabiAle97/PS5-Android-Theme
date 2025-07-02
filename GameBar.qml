@@ -111,16 +111,6 @@ FocusScope {
         exitNav(); 
     }
 
-    TapHandler {
-        onTapped: {
-            if (api.keys.isAccept(event) && !event.isAutoRepeat) {
-                event.accepted = true;
-                sfxAccept.play();
-                exitNav();
-            }
-        }
-    }
-
     Component {
         id: gameBarDelegate
         // ?? (sin cambios aquí, continúa como ya lo tenías)
