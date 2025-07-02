@@ -447,7 +447,7 @@ FocusScope {
         }
         width: root.width
         visible: root.state == "gamedetails"
-
+    
         // Contenido original
         GameDetails {
             id: gameDetails
@@ -491,15 +491,14 @@ FocusScope {
             right: parent.right
         }
         width: root.width
-        visible: root.state == "allgames" || root.state == "topgames"
 
         // Contenido original
         GameGrid {
             id: gameGrid
             anchors.fill: parent
-            width: root.width
             currentState: root.state
             onExit: { gameBar.focus = true; }
+            visible: root.state == "allgames" || root.state == "topgames"
         }
 
         ShaderEffectSource {
