@@ -28,6 +28,8 @@ FocusScope {
         currentGame = tappedGame
         nextView = gameDetails;
         nextState = "gamedetails";
+        gameDetails.menu.currentIndex = idx
+        gameBar.currentIndex = idx
     }
 
     onNextCollectionChanged: { changeCollection() }

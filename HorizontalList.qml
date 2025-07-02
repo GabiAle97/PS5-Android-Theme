@@ -72,7 +72,7 @@ id: root
             TapHandler {
                 onTapped: {
                     if (selected) {
-                        setViewTap(gameData, index+1)
+                        setViewTap(gameData, currentIndex)
                     } else {
                         collectionList.forceActiveFocus()
                         collectionList.currentIndex = index
