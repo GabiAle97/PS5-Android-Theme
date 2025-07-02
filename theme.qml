@@ -435,15 +435,6 @@ FocusScope {
         
     }
 
-    Rectangle {
-        anchors.fill: gameDetails
-        gradient: Gradient {
-            GradientStop { position: 0.2; color: "transparent" }
-            GradientStop { position: 0.0; color: "black" }
-        }
-        z: 100
-        visible: root.state == "gamedetails"
-    }
 
     GameDetails {
     id: gameDetails
@@ -457,11 +448,22 @@ FocusScope {
         gameData: currentGame
         onExit: { gameBar.focus = true; } 
         visible: root.state == "gamedetails"
-        TapHandler {
-            onTapped: {
-                exitNav()
+    }
+
+    ShaderEffect {
+        anchors.fill: gameDetails
+        property variant source: gameDetails
+        fragmentShader: "
+            uniform sampler2D source;
+            varying vec2 qt_TexCoord0;
+            void main() {
+                vec4 color = texture2D(source, qt_TexCoord0);
+                float alphaTop = smoothstep(0.1, 0.0, qt_TexCoord0.y);
+                float alphaBottom = smoothstep(1.0, 0.9, qt_TexCoord0.y);
+                float fade = min(alphaTop, alphaBottom);
+                gl_FragColor = vec4(color.rgb, color.a * fade);
             }
-        }   
+        "
     }
 
     GameGrid {
