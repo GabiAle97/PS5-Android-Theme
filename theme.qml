@@ -435,10 +435,19 @@ FocusScope {
         
     }
 
+    Rectangle {
+        anchors.fill: gameDetails
+        gradient: Gradient {
+            GradientStop { position: 0.2; color: "transparent" }
+            GradientStop { position: 0.0; color: "black" }
+        }
+        z: 100
+        visible: root.state == "gamedetails"
+    }
 
     GameDetails {
     id: gameDetails
-
+        clip: true
         anchors {
             top: gameBar.bottom;
             bottom: parent.bottom;
@@ -448,6 +457,11 @@ FocusScope {
         gameData: currentGame
         onExit: { gameBar.focus = true; } 
         visible: root.state == "gamedetails"
+        TapHandler {
+            onTapped: {
+                exitNav()
+            }
+        }   
     }
 
     GameGrid {
@@ -463,15 +477,6 @@ FocusScope {
         visible: false
     }
 
-    OpacityMask {
-    id: gridOpacityMask
-
-        anchors.fill: gameGrid
-        source: gameGrid
-        maskSource: detailsMask
-        visible: root.state == "allgames" || root.state == "topgames"
-    }
-
     ExploreGames {
     id: exploreScreen
 
@@ -482,15 +487,6 @@ FocusScope {
         width: root.width
         onExit: { gameBar.focus = true; } 
         visible: false
-    }
-
-    OpacityMask {
-    id: exploreOpacityMask
-
-        anchors.fill: gameGrid
-        source: exploreScreen
-        maskSource: detailsMask
-        visible: root.state == "explore"
     }
 
     SoundEffect {

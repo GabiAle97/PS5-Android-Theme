@@ -12,6 +12,7 @@ Item {
     height: vpx(50)
 
     signal activated
+
     TapHandler {
         acceptedDevices: PointerDevice.TouchScreen | PointerDevice.Mouse
         gesturePolicy: TapHandler.ReleaseWithinBounds
@@ -19,6 +20,7 @@ Item {
             activated()
         }
     }
+    
     ItemOutline {
         id: outline 
         anchors.fill: container
