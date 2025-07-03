@@ -27,8 +27,8 @@ FocusScope {
         currentGame = tappedGame
         nextView = gameDetails;
         nextState = "gamedetails";
-        gameBar.gameDataTapped = tappedGame
-        gameBar.idx = idx
+        gameBar.customGameName = tappedGame.title
+        gameBar.customImage = Utils.logo(tappedGame)
     }
 
     onNextCollectionChanged: { changeCollection() }
