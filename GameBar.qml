@@ -17,7 +17,7 @@ FocusScope {
     property bool active
     property string customGameName: ""
     property string customImage: ""
-
+    
     ListModel {
         id: gamesListModel
         property var activeCollection:  currentCollection!=-1 ? api.collections.get(currentCollection).games : api.allGames

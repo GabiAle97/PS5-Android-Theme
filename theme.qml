@@ -149,6 +149,8 @@ FocusScope {
 
     function navigationMenu() {
         gameDetails.menu.currentIndex = 0;
+        gameBar.customGameName = ""
+        gameBar.customImage = ""
         gameBar.focus = true;
     }
 
