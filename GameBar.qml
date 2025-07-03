@@ -17,7 +17,8 @@ FocusScope {
     property bool active
     property string customGameName: ""
     property string customImage: ""
-    
+    property var gameDataTapped
+
     ListModel {
         id: gamesListModel
         property var activeCollection:  currentCollection!=-1 ? api.collections.get(currentCollection).games : api.allGames
@@ -119,7 +120,7 @@ FocusScope {
         Item {
             id: gameItem
             property bool selected: ListView.isCurrentItem
-            property var gameData: searchtext ? modelData : listRecent.currentGame(idx)
+            property var gameData: gameDataTapped ? gameDataTapped : (searchtext ? modelData : listRecent.currentGame(idx))
             property bool isGame: idx >= 0
 
             onGameDataChanged: { if (selected) updateData() }
@@ -174,7 +175,7 @@ FocusScope {
                     id: gameLogo
                     anchors.fill: parent
                     anchors.margins: isGame ? vpx(5) : vpx(20)
-                    source: root.customImage !== "" ? root.customImage : (gameData ? Utils.logo(gameData) || "" : icon)
+                    source: gameData ? Utils.logo(gameData) || "" : icon
                     sourceSize: Qt.size(vpx(125), vpx(125))
                     fillMode: Image.PreserveAspectFit
                     smooth: true
@@ -200,7 +201,7 @@ FocusScope {
                 id: gameName
                 x: active ? vpx(130) : vpx(80)
                 y: active ? vpx(85) : vpx(20)
-                text: root.customGameName !== "" ? root.customGameName : (idx > -1 ? gameData.title : name)
+                text: gameDataTapped ? gameData.title : (idx > -1 ? gameData.title : name)
                 font.family: subtitleFont.name
                 font.pixelSize: vpx(20)
                 color: "white"
