@@ -95,6 +95,7 @@ FocusScope {
             if (!focus)
                 customGameName: ""
                 customImage: ""
+                customSS: "false"
                 positionViewAtIndex = 0;
         }
 
