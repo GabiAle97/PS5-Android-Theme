@@ -17,6 +17,7 @@ FocusScope {
     property bool active
     property string customGameName: ""
     property string customImage: ""
+    property string customSS: ""
 
     ListModel {
         id: gamesListModel
@@ -165,7 +166,7 @@ FocusScope {
             Image {
                 id: screenshot
                 anchors.fill: imageMask
-                source: gameData ? gameData.assets.screenshots[0] || gameData.assets.boxFront || "" : background
+                source: root.customSS !== "-4" ? root.customSS : (gameData ? gameData.assets.screenshots[0] || gameData.assets.boxFront || "" : background)
                 fillMode: Image.PreserveAspectCrop
                 sourceSize: Qt.size(vpx(125), vpx(125))
                 smooth: true

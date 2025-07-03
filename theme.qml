@@ -28,7 +28,19 @@ FocusScope {
         nextView = gameDetails;
         nextState = "gamedetails";
         gameBar.customGameName = tappedGame.title
+        gameBar.customSS = tappedGame.assets.screenshots[0] || tappedGame.assets.boxFront || -4
         gameBar.customImage = Utils.logo(tappedGame)
+        // Buscar el índice correspondiente en el modelo de gameBar
+        var barModel = gameBar.list.model 
+        var barIndex = -1
+        for (var i = 0; i < barModel.count; ++i) {
+            if (barModel.get(i).id === tappedGame.id) { // Usa la propiedad única adecuada
+                barIndex = i
+                break
+            }
+        }
+        if (barIndex !== -1)
+            gameBar.currentIndex = barIndex
     }
 
     onNextCollectionChanged: { changeCollection() }
