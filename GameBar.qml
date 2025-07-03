@@ -15,6 +15,8 @@ FocusScope {
     property alias currentIndex: gameNav.currentIndex
     property alias list: gameNav
     property bool active
+    property string customGameName: ""
+    property string customImage: ""
 
     ListModel {
         id: gamesListModel
@@ -172,7 +174,7 @@ FocusScope {
                     id: gameLogo
                     anchors.fill: parent
                     anchors.margins: isGame ? vpx(5) : vpx(20)
-                    source: gameData ? Utils.logo(gameData) || "" : icon
+                    source: root.customImage !== "" ? root.customImage : (gameData ? Utils.logo(gameData) || "" : icon)
                     sourceSize: Qt.size(vpx(125), vpx(125))
                     fillMode: Image.PreserveAspectFit
                     smooth: true
@@ -198,7 +200,7 @@ FocusScope {
                 id: gameName
                 x: active ? vpx(130) : vpx(80)
                 y: active ? vpx(85) : vpx(20)
-                text: idx > -1 ? gameData.title : name
+                text: root.customGameName !== "" ? root.customGameName : (idx > -1 ? gameData.title : name)
                 font.family: subtitleFont.name
                 font.pixelSize: vpx(20)
                 color: "white"

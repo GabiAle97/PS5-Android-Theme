@@ -24,12 +24,11 @@ FocusScope {
     signal setViewTap(var tappedGame, int idx)
 
     onSetViewTap: {
-        console.log(tappedGame)
         currentGame = tappedGame
         nextView = gameDetails;
         nextState = "gamedetails";
-        gameDetails.menu.currentIndex = idx
-        gameBar.currentIndex = idx
+        gameBar.customGameName = tappedGame.title
+        gameBar.customImage = Utils.logo(tappedGame)
     }
 
     onNextCollectionChanged: { changeCollection() }
