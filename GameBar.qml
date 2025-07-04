@@ -234,6 +234,7 @@ FocusScope {
                             currentIndex = index
                             exitNav()
                         }
+                        gameDataChanged()
                     } else {
                         currentIndex = index
                         sfxAccept.play()
