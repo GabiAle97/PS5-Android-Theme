@@ -97,7 +97,6 @@ FocusScope {
                     customGameName: ""
                     customImage: ""
                     customSS: "false"
-                    idx = -1
                 }
                 positionViewAtIndex = 0;
             }
@@ -222,18 +221,9 @@ FocusScope {
                 grabPermissions: PointerHandler.CanTakeOverFromAnything
                 onTapped: {
                     if (currentIndex == index){
+                        currentIndex = index
                         sfxAccept.play()
-                        if (currentView.focus){
-                            if (root.customGameName !== ""){
-                                index = -1
-                            } else {
-                                currentIndex = index
-                            }
-                            navigationMenu()
-                        } else {
-                            currentIndex = index
-                            exitNav()
-                        }
+                        currentView.focus == true ? navigationMenu() : exitNav()
                     } else {
                         currentIndex = index
                         sfxAccept.play()
