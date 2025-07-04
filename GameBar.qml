@@ -74,6 +74,7 @@ FocusScope {
 
         width: parent.width
         focus: true
+        interactive: true
 
         Keys.onLeftPressed: {
             if (currentIndex > 0) {
