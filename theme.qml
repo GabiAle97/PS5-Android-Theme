@@ -30,17 +30,6 @@ FocusScope {
         gameBar.customGameName = tappedGame.title
         gameBar.customSS = tappedGame.assets.screenshots[0] || tappedGame.assets.boxFront || false
         gameBar.customImage = Utils.logo(tappedGame)
-        // Buscar el índice correspondiente en el modelo de gameBar
-        var barModel = gameBar.list.model 
-        var barIndex = -1
-        for (var i = 0; i < barModel.count; ++i) {
-            if (barModel.get(i).name === tappedGame.name) { // Usa la propiedad única adecuada
-                barIndex = i
-                break
-            }
-        }
-        if (barIndex !== -1)
-            gameBar.currentIndex = barIndex
     }
 
     onNextCollectionChanged: { changeCollection() }
@@ -163,7 +152,9 @@ FocusScope {
         gameDetails.menu.currentIndex = 0;
         gameBar.customGameName = ""
         gameBar.customImage = ""
+        gameBar.customSS = "false"
         gameBar.focus = true;
+        gameBar.currentIndex = -1
     }
 
     function mainView() {

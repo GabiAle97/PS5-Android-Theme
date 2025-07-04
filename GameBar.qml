@@ -15,9 +15,9 @@ FocusScope {
     property alias currentIndex: gameNav.currentIndex
     property alias list: gameNav
     property bool active
-    property string customGameName: ""
-    property string customImage: ""
-    property string customSS: ""
+    property string customGameName
+    property string customImage
+    property string customSS
 
     ListModel {
         id: gamesListModel
