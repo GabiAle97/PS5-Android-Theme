@@ -75,8 +75,6 @@ FocusScope {
         width: parent.width
         focus: true
         interactive: true
-        boundsBehavior: Flickable.StopAtBounds
-        flickableDirection: Flickable.HorizontalFlick
 
         Keys.onLeftPressed: {
             if (currentIndex > 0) {
