@@ -222,9 +222,18 @@ FocusScope {
                 grabPermissions: PointerHandler.CanTakeOverFromAnything
                 onTapped: {
                     if (currentIndex == index){
-                        currentIndex = index
                         sfxAccept.play()
-                        currentView.focus == true ? navigationMenu() : exitNav()
+                        if (currentView.focus){
+                            if (root.customGameName !== ""){
+                                currentIndex = -1
+                            } else {
+                                currentIndex = index
+                            }
+                            navigationMenu() 
+                        } else {
+                            currentIndex = index
+                            exitNav()
+                        }
                     } else {
                         currentIndex = index
                         sfxAccept.play()
