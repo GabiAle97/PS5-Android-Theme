@@ -24,7 +24,6 @@ FocusScope {
     signal setViewTap(var tappedGame, int idx)
 
     onSetViewTap: {
-        gameBar.currentIndex = -1
         currentGame = tappedGame
         nextView = gameDetails;
         nextState = "gamedetails";
