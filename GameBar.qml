@@ -225,12 +225,11 @@ FocusScope {
                         sfxAccept.play()
                         if (currentView.focus){
                             if (root.customGameName !== ""){
-                                currentIndex = -1
-                                explore()
+                                index = -1
                             } else {
                                 currentIndex = index
-                                navigationMenu() 
                             }
+                            navigationMenu()
                         } else {
                             currentIndex = index
                             exitNav()
