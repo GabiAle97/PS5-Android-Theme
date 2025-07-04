@@ -15,8 +15,8 @@ FocusScope {
     property alias currentIndex: gameNav.currentIndex
     property alias list: gameNav
     property bool active
-    property string customGameName
-    property string customImage
+    property string customGameName: ""
+    property string customImage: ""
     property string customSS: "false"
 
     ListModel {
@@ -92,11 +92,15 @@ FocusScope {
         }
 
         onFocusChanged: {
-            if (!focus)
-                customGameName: ""
-                customImage: ""
-                customSS: "false"
+            if (!focus) {
+                if (customGameName !== ""){
+                    customGameName: ""
+                    customImage: ""
+                    customSS: "false"
+                    currentIndex = -1
+                }
                 positionViewAtIndex = 0;
+            }
         }
 
         orientation: ListView.Horizontal
