@@ -30,7 +30,6 @@ FocusScope {
         gameBar.customGameName = tappedGame.title
         gameBar.customSS = tappedGame.assets.screenshots[0] || tappedGame.assets.boxFront || false
         gameBar.customImage = Utils.logo(tappedGame)
-        currentIndex = -1
     }
 
     onNextCollectionChanged: { changeCollection() }

@@ -97,7 +97,7 @@ FocusScope {
                     customGameName: ""
                     customImage: ""
                     customSS: "false"
-                    currentIndex = -1
+                    idx = -1
                 }
                 positionViewAtIndex = 0;
             }
