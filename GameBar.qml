@@ -211,21 +211,6 @@ FocusScope {
                 opacity: selected ? 1 : 0
                 Behavior on opacity { NumberAnimation { duration: 50 } }
             }
-
-            TapHandler {
-                acceptedDevices: PointerDevice.TouchScreen
-                gesturePolicy: TapHandler.WithinBounds
-                onTapped: {
-                    if (currentIndex == index){
-                        currentIndex = index
-                        sfxAccept.play()
-                        currentView.focus == true ? navigationMenu() : exitNav()
-                    } else {
-                        currentIndex = index
-                        sfxAccept.play()
-                    } 
-                }
-            }
         }
     }
 }
