@@ -27,6 +27,7 @@ FocusScope {
         currentGame = tappedGame
         nextView = gameDetails;
         nextState = "gamedetails";
+        gameBar.currentIndex = -1
         gameBar.customGameName = tappedGame.title
         gameBar.customSS = tappedGame.assets.screenshots[0] || tappedGame.assets.boxFront || false
         gameBar.customImage = Utils.logo(tappedGame)
