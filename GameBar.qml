@@ -17,7 +17,7 @@ FocusScope {
     property bool active
     property string customGameName
     property string customImage
-    property string customSS
+    property string customSS: "false"
 
     ListModel {
         id: gamesListModel
