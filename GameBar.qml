@@ -218,7 +218,6 @@ FocusScope {
             TapHandler {
                 acceptedDevices: PointerDevice.TouchScreen
                 gesturePolicy: TapHandler.WithinBounds
-                grabPermissions: PointerHandler.CanTakeOverFromAnything
                 onTapped: {
                     if (currentIndex == index){
                         currentIndex = index
