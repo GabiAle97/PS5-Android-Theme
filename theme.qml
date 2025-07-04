@@ -153,7 +153,6 @@ FocusScope {
         gameBar.customGameName = ""
         gameBar.customImage = ""
         gameBar.customSS = "false"
-        gameBar.currentIndex = -1
         gameBar.focus = true;
     }
 
