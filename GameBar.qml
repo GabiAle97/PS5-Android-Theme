@@ -167,7 +167,7 @@ FocusScope {
             Image {
                 id: screenshot
                 anchors.fill: imageMask
-                source: root.customSS !== "false" ? root.customSS : (gameData ? gameData.assets.screenshots[0] || gameData.assets.boxFront || "" : background)
+                source: root.customSS != "false" ? root.customSS : (gameData ? gameData.assets.screenshots[0] || gameData.assets.boxFront || "" : background)
                 fillMode: Image.PreserveAspectCrop
                 sourceSize: Qt.size(vpx(125), vpx(125))
                 smooth: true
